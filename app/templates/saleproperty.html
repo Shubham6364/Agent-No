@@ -1,0 +1,651 @@
+<!doctype html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'sale.css' %}">
+
+    <script src="https://kit.fontawesome.com/a221b1fd2a.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a44d3682ff.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   
+   
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"/>
+    
+    <title>MainPage</title>
+
+
+    
+   
+
+
+
+
+{% comment %} form validation {% endcomment %}
+  
+     <script>
+          function validate(){
+            var floor = document.sale_form.floor;
+            var total_floors = document.sale_form.total_floors;
+            var sqt =  document.sale_form.sqt;
+            var landmark = document.sale_form.landmark;
+            var myCountry = document.sale_form.myCountry;
+
+
+            if(floor.value.length >=3){
+              alert("floor is type only 3 digits required");
+              return false;
+              floor.focus();
+              return false;
+            }
+            
+
+            if(total_floors.value.length >=3){
+              alert("total_floors is type only 2 digits required");
+              return false;
+              total_floors.focus();
+              return false;
+            }
+
+            if(sqt.value.length >=6){
+              alert("sqt is type only 5 digits required");
+              return false;
+              sqt.focus();
+              return false;
+            }
+
+            if(landmark.value.length >=15){
+              alert("Landmark is type only 14 digits required");
+              return false;
+              landmark.focus();
+              return false;
+            }
+
+              if(myCountry.value.length >=15){
+                alert("Location is type only  required");
+                return false;
+                myCountry.focus();
+                return false;
+              }
+              return False;
+            }
+
+      </script>
+
+{% comment %} end from validation {% endcomment %}
+
+ 
+
+</head>
+<body>
+
+  
+
+
+
+<div class="container">
+    <form id="ownsale"  method="POST" name="sale_form" onsubmit="return validate()" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}" role="alert">
+   
+   
+    <p>{{ message.tags }}</p>
+  </div>
+  {% endfor %}
+         
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Property Type</span>
+                <select class="input" name="Property_Type" required>
+                    <option  value="1RK">1RK</option>
+                    <option  value="1BHK">1BHK</option>
+                    <option  value="2BHK">2BHK</option>
+                    <option  value="3BHK">3BHK+</option>
+                    <option  value="OFFICE">OFFICE</option>
+                    <option  value="SHOP-GALA">SHOP-GALA</option>
+                    <option  value="CHAWL">CHAWL</option>
+                    <option  value="LAND">LAND</option>
+                    <option  value="BUNGLOW-ROWHOUSE">BUNGLOW-ROWHOUSE</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <span class="details">Area</span>
+                
+              
+                <select class="carpet" name="aname" required>
+                    <option>select</option>
+                    <option>Carpet Area</option>
+                    <option>Builtup Area</option>
+                </select>
+                <input class="area w-50" type="number" name='sqt' required>
+            </div>
+            <div class="input-box1">
+                <span class="details1">Floor</span>
+                <input type="number" placeholder="Which Floor" name="floor" required>
+            </div>
+            <div class="input-box1">
+                <span class="details1">Total Floors</span>
+                <input type="number" placeholder="Total Floors" name="total_floors" required>
+            </div>
+            <div class="input-box1">
+                <span class="details1">Property Age</span>
+                <select class="age" name="property_age" required>
+                    <option>0-10 year old</option>
+                    <option>10-30 year old</option>
+                    <option>30+ year old</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <span class="details">Property Status</span>
+                <select class="status" name="property_status" required>
+                    <option>Ready To Move</option>
+                    <option>Under Construction</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <span class="details">Landmark</span>
+                <input class="landmark" type="text" placeholder="Street/Landmark" name="landmark" required>
+            </div>
+            <div class="form-group" style="padding-top: 30px;">
+                          <div class="autocomplete">
+                          <input type="text"  class="form-control my-2 my-lg-1" id="myInput" placeholder="Location" name="myCountry">
+                        </div>
+                        </div>
+      
+
+<!-- autocomplete search location -->
+
+            <script>
+function autocomplete(inp, arr) {
+  /*the autocomplete function takes two arguments,
+  the text field element and an array of possible autocompleted values:*/
+  var currentFocus;
+  /*execute a function when someone writes in the text field:*/
+  inp.addEventListener("input", function(e) {
+      var a, b, i, val = this.value;
+      /*close any already open lists of autocompleted values*/
+      closeAllLists();
+      if (!val) { return false;}
+      currentFocus = -1;
+      /*create a DIV element that will contain the items (values):*/
+      a = document.createElement("DIV");
+      a.setAttribute("id", this.id + "autocomplete-list");
+      a.setAttribute("class", "autocomplete-items");
+      /*append the DIV element as a child of the autocomplete container:*/
+      this.parentNode.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          /*create a DIV element for each matching element:*/
+          b = document.createElement("DIV");
+          /*make the matching letters bold:*/
+          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].substr(val.length);
+          /*insert a input field that will hold the current array item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+              /*insert the value for the autocomplete text field:*/
+              inp.value = this.getElementsByTagName("input")[0].value;
+              /*close the list of autocompleted values,
+              (or any other open lists of autocompleted values:*/
+              closeAllLists();
+          });
+          a.appendChild(b);
+        }
+      }
+  });
+  /*execute a function presses a key on the keyboard:*/
+  inp.addEventListener("keydown", function(e) {
+      var x = document.getElementById(this.id + "autocomplete-list");
+      if (x) x = x.getElementsByTagName("div");
+      if (e.keyCode == 40) {
+        /*If the arrow DOWN key is pressed,
+        increase the currentFocus variable:*/
+        currentFocus++;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 38) { //up
+        /*If the arrow UP key is pressed,
+        decrease the currentFocus variable:*/
+        currentFocus--;
+        /*and and make the current item more visible:*/
+        addActive(x);
+      } else if (e.keyCode == 13) {
+        /*If the ENTER key is pressed, prevent the form from being submitted,*/
+        e.preventDefault();
+        if (currentFocus > -1) {
+          /*and simulate a click on the "active" item:*/
+          if (x) x[currentFocus].click();
+        }
+      }
+  });
+  function addActive(x) {
+    /*a function to classify an item as "active":*/
+    if (!x) return false;
+    /*start by removing the "active" class on all items:*/
+    removeActive(x);
+    if (currentFocus >= x.length) currentFocus = 0;
+    if (currentFocus < 0) currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[currentFocus].classList.add("autocomplete-active");
+  }
+  function removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    for (var i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
+  }
+  function closeAllLists(elmnt) {
+    /*close all autocomplete lists in the document,
+    except the one passed as an argument:*/
+    var x = document.getElementsByClassName("autocomplete-items");
+    for (var i = 0; i < x.length; i++) {
+      if (elmnt != x[i] && elmnt != inp) {
+        x[i].parentNode.removeChild(x[i]);
+      }
+    }
+  }
+  /*execute a function when someone clicks in the document:*/
+  document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+  });
+}
+
+/*An array containing all the country names in the world:*/
+var countries = ["Airoli East", "Airoli West ", "Ambernath East", "Ambernath West", "Ambivali", "Andheri East","Andheri West",
+          "Apta", "Asangaon", "Atgaon", "Badlapur East", "Badlapur West", "Bamandongri", "Bandra East","Bandra West",
+          "Belapur West", "Bhandup East", "Bhandup West", "Bhayander", "Bhivpuri Road", "Bhiwandi","Boisar West", "Borivali East",
+          "Borivali West", "Byculla East", "Byculla West", "CSMT", "Charni East", "Charni West", "Chembur",
+          "Chinchpokli", "Chunabhatti", "Churchgate East", "Churchgate West", "Cotton Green","Curry Road East", "Curry Road West",
+          "Dadar East", "Dadar West", "Dahanu Road", "Dahisar East", "Dahisar West", "Dativali","Diva JN East", "Diva JN West", "Dockyard", "Dolavli",
+          "Dombivli East", "Dombivali West", "Dronagiri", "Elphistone Road East", "Elphistone Road West","GTB Nagar", "Ghansoli",
+          "Ghatkopar East", "Ghatkopar West", "Goregaon East", "Goregaon West", "Govandi East","Govandi West", "Grant Road East", "Grant Road West", "Hamrapur",
+          "Jite", "Jogeshwari East", "Jogeshwari West", "Juchandra Road", "Juinagar East", "Juinagar West","Kalamboli", "Kalva East", "Kalva West",
+          "Kalyan East", "Kalyan West", "Kaman Road", "Kamothe", "Kandivali East", "Kandivali West","Kanjur Marg East", "Kanjur Marg West", "Karjat",
+          "Kasara", "Kasu", "Kelavli", "Kelva Road", "Khadavli", "Khandeshwar", "Khar East", "Khar West","Kharbao", "Khardi", "Kharghar", "Kharkopar",
+          "Khopoli", "Kings Circle", "Kopar East", "Kopar West", "Koparkhairne", "Kurla East", "Kurla West","Lower Parel East", "Lower Parel West",
+          "Lowjee", "Mahalakshmi East", "Mahalakshmi West", "Mahim JN East", "Mahim JN West", "Malad East","Malad West", "Mansarovar", "Mankhurd East",
+          "Mankhurd West", "Marine Lines East", "Marin Lines West", "Masjid Bunder", "Matunga East","Matunga West", "Matunga Road East",
+          "Matunga Road West", "Mira Road East", "Mira Road West", "Mulund", "Mumbai Central East","Mumbai Central West", "Mumbra East", "Mumbra West", "Nahur East",
+          "Nahur West", "Naigaon East", "Naigaon West", "NallaSopara East", "NallaSopara West","Nariman Point", "Navade Road", "Navi Mumbai", "Neral",
+          "Nerul", "Nidi", "Nilje", "Oshiwara", "Palasdhari", "Palghar", "Panvel East", "Panvel West","Parel East", "Parel West", "Pen", "Powai", "Prabhadevi",
+          "Rabale", "Ranjanpada", "Ram Mandir", "Rasayani", "Reay Road", "Roha", "Sagar Sangam","Sakinaka East", "Sakinaka West", "Sandhurst Road East",
+          "Sandhurst Road West", "Sanpada", "SantaCruz East", "SantaCruz West", "Saphale", "Seawood Darave","Sewri", "Shahad", "Shelu", "Sion", "Somtane",
+          "Taloja", "Thakurali East", "Thakurli West", "Thane East", "Thane West", "Thansit","Tilaknagar East", "Tilaknagar West", "Titwala", "Turbhe",
+          "Ulhasnagar East", "Ulhasnagar West", "Umroli Road", "Umbermali", "Uran", "Vadala Road East","Vadala Road West", "Vaitarana", "Vangani",
+          "Vangaon", "Vasai Road East", "Vasai Road West", "Vashi East", "Vashi West", "Vasind","VidyaVihar East", "VidyaVihar West", "Vikhroli",
+          "Vile Parle East", "Vile Parle West", "Virar East", "Virar West", "Vithalwadi East","Vithalwadi West", "Wadala"];
+
+/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+autocomplete(document.getElementById("myInput"), countries);
+</script>
+
+<!-- autocomplete search location end -->
+
+
+            <div class="input-box">
+                <span class="details5">Selling Price</span>
+                <input id="Text1" name="sale" class="sprice" type="text" onkeypress="return onlyNumbers(this.value);" onkeyup="NumToWord(this.value,'divDisplayWords');" maxlength="9" style="background-color: #efefef; border: 2px solid #CCCCC; font-size: large" placeholder=" Selling Price" required>
+                <div id="divDisplayWords" style="font-size: 10; color: crimson; font-family: Arial;"></div>
+            </div>
+            <div class="input-box">
+                <span class="details">Available From</span>
+                <input class="from" name="date"  type="date" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Furnishing</span>
+                <select class="furnish" name="furnishing" required>
+                    <option>Furnished</option>
+                    <option>Semi Furnished</option>
+                    <option>Unfurnished</option>
+                </select>
+            </div>
+           <div class="col-lg-8"> 
+               
+                <input type="checkbox"  name="lift" value="lift">&nbsp;&nbsp;<label>lift</label>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox"  name="Gym" value="<i class="fa-solid fa-dumbbell"></i>" />&nbsp;&nbsp;<label>Gym</label>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox"  name="SwimmingPool"  value="SwimmingPool" >&nbsp;&nbsp;<label >Swimming Pool</label>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox" name="petsallowed" value="petsallowed">&nbsp;&nbsp;<label >Pets Allowed</label><br>
+                <input type="checkbox"  name="Wifiinternet" >&nbsp;&nbsp;<label>Wifi internet</label>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox"  name="Childrenplayground" >&nbsp;&nbsp;<label>Children Playground</label>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox"  name="twowheeler" >&nbsp;&nbsp;<label>2 Wheeler</label><br>
+                <input type="checkbox"  name="fourwheeler" >&nbsp;&nbsp;<label>4 Wheeler</label>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox" name="towfourwheeler" >&nbsp;&nbsp;<label>2 Wheeler & 4 Wheeler</label>
+                &nbsp;&nbsp;&nbsp;<input type="checkbox"  name="gateaccess" >&nbsp;<label>Gated Access</label>
+                <input type="checkbox" name="balcony" >&nbsp;&nbsp;<label>Balcony</label>
+            
+              </div>
+          {% comment %} </div> {% endcomment %}
+
+
+         <!--  <div class="upload__box">
+  <div class="upload__btn-box">
+    <label class="upload__btn">
+      <p>Upload images</p>
+      <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+    </label>
+  </div>
+  <div class="upload__img-wrap"></div>
+</div> -->
+            <div class="col-sm-1">
+              <input type="file" id="images"  multiple name="images">
+              
+                {% comment %} <button class="btn btn-secondary" id="addPhotosBtn" style="width:130px;padding:8px;background:crimson;margin-top:2px;">Add Photos <i class="fa fa-camera"></i> </button>  {% endcomment %}
+            </div><br>
+            {% comment %} <div class="col-md-1 mt-1">
+              <button class="btn btn-secondary" id="addPhotosBtn" style="width:90px;padding:5px;background:crimson; margin-left:50px;"> Photos <i class="fa fa-camera"></i> </button> 
+                <button class="btn btn-secondary" id="addVideosBtn" style="margin-top:20px;width:90px;padding:5px;background:crimson; margin-left:50px;">Videos <i class="fa fa-video"></i> </button>
+            </div> {% endcomment %}
+           <div class="photos-list" style='margin-right:40px;'>
+                <ul>
+
+                </ul>
+            </div> 
+        </div>
+         <div class="col-md-12">
+            <div class="video-list">
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+        <input type="checkbox" id="set" name="seller" value="sale">
+        <label for="set">Sale</label><br>
+        <div>
+            <span class="details" style="margin-left:10px;">Description</span>
+            <textarea name="Description" minlength="20" maxlength="5000" placeholder="Type Your Extra Property Details" required></textarea>
+        </div>
+        <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="back">Cancel</button>
+            <button type="submit" class="post" id="btn">Post</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+function myFunction() {
+  var x = document.getElementById("fill-form1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFunction() {
+  var x = document.getElementById("fill-form");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+var modal = document.getElementById('id01');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+//======================================================================================================================
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+function myFunction() {
+  var x = document.getElementById("fill-form1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function myFunction() {
+  var x = document.getElementById("fill-form");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+document.getElementById("defaultOpen").click();
+ function myFunction(evt, color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(color).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+var modal = document.getElementById('id01');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+//amount=============================================================================================================
+function onlyNumbers(evt) {
+        var e = event || evt; // For trans-browser compatibility
+        var charCode = e.which || e.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+        return true;
+     }
+     function NumToWord(inputNumber, outputControl) {
+        var str = new String(inputNumber)
+        var splt = str.split("");
+        var rev = splt.reverse();
+        var once = ['Zero', ' One', ' Two', ' Three', ' Four', ' Five', ' Six', ' Seven', ' Eight', ' Nine'];
+        var twos = ['Ten', ' Eleven', ' Twelve', ' Thirteen', ' Fourteen', ' Fifteen', ' Sixteen', ' Seventeen', ' Eighteen', ' Nineteen'];
+        var tens = ['', 'Ten', ' Twenty', ' Thirty', ' Forty', ' Fifty', ' Sixty', ' Seventy', ' Eighty', ' Ninety'];
+        numLength = rev.length;
+        var word = new Array();
+        var j = 0;
+        for (i = 0; i < numLength; i++) {
+            switch (i) {
+            case 0:
+            if ((rev[i] == 0) || (rev[i + 1] == 1)) {
+                 word[j] = '';
+            }
+            else {
+                 word[j] = '' + once[rev[i]];
+            }
+                 word[j] = word[j];
+        break;
+            case 1:
+            aboveTens();
+        break;
+            case 2:
+                if (rev[i] == 0) {
+                    word[j] = '';
+                }
+                else if ((rev[i - 1] == 0) || (rev[i - 2] == 0)) {
+                    word[j] = once[rev[i]] + " Hundred ";
+                }
+                else {
+                    word[j] = once[rev[i]] + " Hundred and";
+                }
+        break;
+            case 3:
+                if (rev[i] == 0 || rev[i + 1] == 1) {
+                    word[j] = '';
+                }
+                else {
+                    word[j] = once[rev[i]];
+                }
+                if ((rev[i + 1] != 0) || (rev[i] > 0)) {
+                    word[j] = word[j] + " Thousand";
+                }
+        break;
+            case 4:
+                aboveTens();
+        break;
+            case 5:
+                    if ((rev[i] == 0) || (rev[i + 1] == 1)) {
+                        word[j] = '';
+                    }
+                    else {
+                        word[j] = once[rev[i]];
+                    }
+                    if (rev[i + 1] !== '0' || rev[i] > '0') {
+                        word[j] = word[j] + " Lakh";
+                    }
+        break;
+            case 6:
+                    aboveTens();
+        break;
+            case 7:
+                if ((rev[i] == 0) || (rev[i + 1] == 1)) {
+                    word[j] = '';
+                }
+                else {
+                    word[j] = once[rev[i]];
+                }
+                if (rev[i + 1] !== '0' || rev[i] > '0') {
+                    word[j] = word[j] + " Crore";
+                }
+        break;
+            case 8:
+                aboveTens();
+        break;
+    default: break;
+    }
+    j++;
+}
+    function aboveTens() {
+        if (rev[i] == 0) { word[j] = ''; }
+        else if (rev[i] == 1) { word[j] = twos[rev[i - 1]]; }
+        else { word[j] = tens[rev[i]]; }
+    }
+    word.reverse();
+    var finalOutput = '';
+    for (i = 0; i < numLength; i++) {
+        finalOutput = finalOutput + word[i];
+    }
+    document.getElementById(outputControl).innerHTML = finalOutput;
+    }
+
+//=============================photo========================================================================================
+$('#addPhotosBtn').click(function() {
+  $(this).parents().find('#addPhotosInput').click();
+});
+
+document.getElementById('addPhotosInput').onchange = e => {
+  const file = e.target.files[0];
+  const url = URL.createObjectURL(file);
+  const li = ` <li> <img src=" ${url} ">
+       <span><i class="fa fa-trash"></i></span>
+   </li>`
+  $('.photos-list ul').append(li);
+};
+
+//==============================video======================================================================================
+$('#addVideosBtn').click(function() {
+  $(this).parents().find('#addVideosInput').click();
+});
+
+document.getElementById('addVideosInput').onchange = e => {
+  const file = e.target.files[0];
+  const url = URL.createObjectURL(file);
+  const li = ` <li> <video controls="controls" src=" ${url} " type="video/mp4" width="400px" height="200px"></video>
+       <span><i class="fa fa-trash"></i></span>
+   </li>`
+  $('.video-list ul').append(li);
+};
+
+//=============================photo========================================================================================
+$('#addPhotosBtn1').click(function() {
+  $(this).parents().find('#addPhotosInput1').click();
+});
+
+document.getElementById('addPhotosInput1').onchange = e => {
+  const file = e.target.files[0];
+  const url = URL.createObjectURL(file);
+  const li = ` <li> <img src=" ${url} ">
+       <span><i class="fa fa-trash"></i></span>
+   </li>`
+  $('.photos-list ul').append(li);
+};
+//====================================selectpicker======================================================================================
+ $(document).ready(function(){
+          $('.multi_select').selectpicker();
+ });
+//==============================video======================================================================================
+$('#addVideosBtn1').click(function() {
+  $(this).parents().find('#addVideosInput1').click();
+});
+
+document.getElementById('addVideosInput1').onchange = e => {
+  const file = e.target.files[0];
+  const url = URL.createObjectURL(file);
+  const li = ` <li> <video controls="controls" src=" ${url} " type="video/mp4" width="400px" height="200px"></video>
+       <span><i class="fa fa-trash"></i></span>
+   </li>`
+  $('.video-list ul').append(li);
+};
+//==========================================================================================================================
+
+
+
+
+</script>
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script> </body>
+</html>

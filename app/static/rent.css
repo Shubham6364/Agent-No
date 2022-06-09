@@ -1,0 +1,441 @@
+*{
+    padding:0;
+    margin:0;
+    text-decoration:none;
+    list-style:none;
+    box-sizing:border-box;
+    font-family:arial;
+}
+body{
+    font-family:arial;
+}
+/*===================nav start========================================================================================*/
+.main_nav{
+    background: #CB356B;
+    background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
+    background: linear-gradient(to right, #BD3F32, #CB356B);
+    overflow: hidden;
+    height:60px;
+    font-style:arial;
+    text-transfer:uppercase;
+}
+ .logo{
+    font-weight:bold;
+    margin-left:60px;
+    font-size:35px;
+    padding:0px;
+    margin-top:5px;
+ }
+a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size:15px;
+    font-weight:bold;
+}
+#active {
+    margin-left:460px;
+}
+.main-login{
+    margin-top:11px;
+    width:100px;
+    padding:10px;
+    color:white;
+}
+.main_nav .icon {
+  display: none;
+}
+.nav-drp {
+  float: left;
+  overflow: hidden;
+}
+.nav-drp .nav-btn {
+  font-size: 15px;
+  min-width: 140px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 10px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin-top:10px;
+  font-weight:bold;
+}
+.nav-content {
+  display: none;
+  margin-top:1px;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 222px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.nav-content a {
+  float: none;
+  color:firebrick;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.main_nav a:hover, .nav-drp:hover .nav-btn {
+  background-color: #555;
+  color: white;
+}
+.nav-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.nav-drp:hover .nav-content {
+  display: block;
+}
+@media screen and (max-width: 600px) {
+  .main_nav a:not(:first-child), .nav-drp .nav-btn {
+    display: none;
+  }
+  .main_nava.icon {
+    float: right;
+    display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .main_nav.responsive {position: relative;}
+  .main_nav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .main_nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .main_nav.responsive .nav-drp {float: none;}
+  .main_nav.responsive .nav-content {position: relative;}
+  .main_nav.responsive .nav-drp .nav-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+/*===========================================rent form================================================================*/
+.container{
+    display:block;
+    width:500px;
+    overflow: hidden;
+    margin-top:30px;
+}
+.container .title{
+    font-size:30px;
+    color:navy;
+    font-weight:bold;
+    position:relative;
+    text-align:center;
+}
+.container .title::before{
+    content:'';
+    position:absolute;
+    left:210px;
+    bottom:0;
+    height:1px;
+    width:680px;
+    background:lightgray;
+}
+#ownrent{
+    width:700px;
+    height:200vh;
+    margin-top:50px;
+    outline:none;
+    border:none;
+    margin-left:200px;
+}
+.user-details1{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    margin-top:10px;
+}
+form .user-details1 .input-box1{
+    margin:10px 5px 12px 5px;
+    margin-bottom:15px;
+    width:calc(100% /2 - 50px);
+}
+form .user-details1 .input-box2{
+    margin:10px 5px 12px 5px;
+    margin-bottom:15px;
+    width:calc(100% /3 - 50px);
+}
+.input1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.input2{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.area1{
+    padding:7px;
+    width:80px;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.ft1{
+    padding:9px;
+    width:80px;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.carpet1{
+    padding:9px;
+    width:130px;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.age1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.status1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.landmark1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.location1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.rent-price{
+    padding:10px;
+    width:140px;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+    margin-left:80px;
+}
+.dp-price{
+    padding:10px;
+    width:140px;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+    margin-left:40px;
+}
+.details3{
+    margin-left:80px;
+    color:crimson;
+    font-weight:bold;
+}
+.details4{
+    margin-left:40px;
+    color:crimson;
+    font-weight:bold;
+}
+.from1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.park1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.furnish1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+}
+.ameni1{
+    padding:10px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+    text-transform:uppercase;
+}
+.user-details1 .details2{
+    display:block;
+    font-weight:bold;
+    color:darkslategray;
+    margin-bottom:5px;
+}
+.user-details1 .input-box1 .details2{
+    display:block;
+    font-weight:bold;
+    color:darkslategray;
+    margin-bottom:5px;
+}
+.user-details1 .input-box1 input1{
+    height:40px;
+    width:100%;
+    outline:none;
+    border-radius:3px;
+    padding-left:15px;
+    font-size:14px;
+    border:1px solid gray;
+    border-bottom-width:2px;
+    transition:all 0.3s ease;
+}
+.user-details1  .input1:focus,
+.user-details1  .input1:valid{
+    border-color:gray;
+}
+.textarea{
+    width:100%;
+    height:150px;
+    padding:15px 20px;
+    resize:none;
+    display:block;
+}
+.textarea:focus{
+    border:1px solid gray;
+    outline:0;
+    border-bottom-width:2px;
+}
+button.post1{
+    padding:10px;
+    margin-top:20px;
+    width:200px;
+    color:white;
+    background:crimson;
+    margin-left:100px;
+}
+.post1:hover {
+  opacity:1;
+  background:green;
+}
+button.back1 {
+    padding:10px;
+    margin-top:20px;
+    width:200px;
+    color:white;
+    background:red;
+    margin-left:100px;
+}
+.back1, .post1 {
+  float: left;
+  width: 100px;
+}
+.clearfix1::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+
+/*the container must be positioned relative:*/
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  border: 1px solid transparent;
+  background-color: #f1f1f1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+input[type=text] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+  cursor: pointer;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 5px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important; 
+  color: #ffffff; 
+}

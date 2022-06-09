@@ -1,0 +1,185 @@
+.tab_head{
+    border:1px solid navy;
+    width:98%;
+    margin-left:1%;
+    height:30px;
+}
+.id{
+    border-right:1px solid silver;
+    width:60px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.user{
+    border-right:1px solid silver;
+    width:120px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.name{
+    border-right:1px solid silver;
+    width:180px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.post{
+    border-right:1px solid silver;
+    width:150px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.end{
+    border-right:1px solid silver;
+    width:150px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.pac{
+    border-right:1px solid silver;
+    width:104px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.city{
+    border-right:1px solid silver;
+    width:124px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.loc{
+    border-right:1px solid silver;
+    width:180px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.type{
+    border-right:1px solid silver;
+    width:180px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+}
+.act{
+    width:50px;
+    padding:5px;
+    float:left;
+    font-size:14px;
+    text-align:center;
+    border:1px solid white;
+}
+/*=====================database=======================================================================================*/
+.table{
+    border:1px solid navy;
+    width:99%;
+    margin-left:1%;
+    height:380px;
+    overflow-y:auto;
+    margin-top:1px;
+}
+.box_1{
+    border:1px solid silver;
+    height:25px;
+    text-align:center;
+    font-size:14px;
+    margin-top:1px;
+}
+.a{
+    border:1px solid white;
+    width:58px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.b{
+    border:1px solid white;
+    width:120px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.c{
+    border:1px solid white;
+    width:180px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.d{
+    border:1px solid white;
+    width:150px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.e{
+    border:1px solid white;
+    width:150px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.f{
+    border:1px solid white;
+    width:105px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.g{
+    border:1px solid white;
+    width:125px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.h{
+    border:1px solid white;
+    width:180px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.i{
+    border:1px solid white;
+    width:180px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+}
+.j{
+    border:1px solid green;
+    width:70px;
+    float:left;
+    height:23px;
+    padding-top:2px;
+    font-weight:bold;
+    color:darkslategray;
+    background:gainsboro;
+}
+.title{
+    border:1px solid silver;
+    width:50%;
+    margin-left:25%;
+    height:30px;
+    text-align:center;
+    padding-top:5px;
+    color:crimson;
+    font-weight:bold;
+}
