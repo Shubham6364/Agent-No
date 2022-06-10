@@ -14,6 +14,7 @@ import imp
 from pathlib import Path
 import os
 import django_heroku
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -151,9 +152,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+django_heroku.settings(locals())
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+
 
 
 
@@ -182,4 +184,3 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = "home"
 
-django_heroku.settings(locals())
