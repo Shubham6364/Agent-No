@@ -1,9 +1,7 @@
-import email
-import imp
+
 from operator import mod
 from pyexpat import model
 from django.db import models
-from PIL import Image
 from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 
