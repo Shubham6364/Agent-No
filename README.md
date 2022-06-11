@@ -29,4 +29,4 @@
 
 # Crud Operations Fully Dynamic
 
-![crud](https://user-images.githubusercontent.com/96344394/173171697-6f9ee183-2a2c-4508-89b7-5a9f476f70bb.PNG
+![crud](https://user-images.githubusercontent.com/96344394/173171697-6f9ee183-2a2c-4508-89b7-5a9f476f70bb.PNG)
