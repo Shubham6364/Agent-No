@@ -15,6 +15,6 @@
 
 ![search-bar-filter-location-requirements](https://user-images.githubusercontent.com/96344394/173171366-12894ca4-6989-428a-bf51-8e078d316dd7.PNG)
 
-# Details Page
+# Contactdetails Page
 
 ![Deatilspage](https://user-images.githubusercontent.com/96344394/173171429-46778369-60a9-41e3-908a-2344ffad8a53.PNG)
