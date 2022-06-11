@@ -1,6 +1,7 @@
 
 from email.mime import image
 from multiprocessing import context
+from random import choices
 from django.contrib.auth import authenticate, login
 from urllib.robotparser import RequestRate
 from django.shortcuts import render , redirect
@@ -219,8 +220,8 @@ def loginpage(request):
 
 #mancontainer page
 def main(request):
-	saledata = Salepost.objects.all().order_by('-date')
-	rentdata = Rentpost.objects.all().order_by('-date')
+	saledata = Salepost.objects.filter(status='Publish').order_by('-date')
+	rentdata = Rentpost.objects.filter(status='Publish').order_by('-date')
 
 		# sale paginator
 	

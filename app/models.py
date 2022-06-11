@@ -1,6 +1,7 @@
 
 from operator import mod
 from pyexpat import model
+from random import choices
 from django.db import models
 from django.contrib.auth.models import User
 from autoslug import AutoSlugField
@@ -28,6 +29,8 @@ def compress(image):
 
 
 class Salepost(models.Model):
+	STATUS = ('Publish','Publish'),('Draft','Draft')
+	status = models.CharField(choices=STATUS, max_length=50)
 	user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 	property_type = models.TextField(max_length=10)
 	area_type = models.TextField(max_length=10)
@@ -83,6 +86,8 @@ class Salepost(models.Model):
 
 
 class Rentpost(models.Model):
+	STATUS = ('Publish','Publish'),('Draft','Draft')
+	status = models.CharField(choices=STATUS, max_length=50)
 	user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 	property_type = models.TextField(max_length=1)
 	area_type = models.TextField(max_length=1)
