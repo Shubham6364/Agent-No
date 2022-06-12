@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% comment %} <link rel="stylesheet" href="{% static 'staffaproval.css' %}"> {% endcomment %}
+<style>
+            
+.main_box{
+    width:98%;
+    margin-left:1%;
+    height:550px;
+    margin-top:10px;
+}
+.main_display{
+    border:1px solid lightgray;
+    width:98.5%;
+    height:96.5%;
+    margin:10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.box_1{
+    border:1px solid lightgray;
+    width:49%;
+    height:175px;
+    margin-top:5px;
+    margin-left:5px;
+    float:right;
+}
+.for{
+    text-align:center;
+    color:orangered;
+    font-weight:bold;
+    font-size:18px;
+    width:65%;
+    margin:5px;
+    padding:8px;
+    float:left;
+    text-align:left;
+    border-bottom:1px solid silver;
+}
+.aprov{
+    width:13%;
+    float:left;
+    margin-left:1px;
+    margin-top:6px;
+    padding:11px;
+    font-size:14px;
+    text-align:center;
+    font-weight:bold;
+    background:green;
+    border-top:1px solid gray;
+    border-left:1px solid gray;
+    color:white;
+}
+.aprov:hover{
+    background:lime;
+}
+.block{
+    width:10%;
+    float:left;
+    margin-left:2px;
+    margin-top:6px;
+    padding:11px;
+    font-size:14px;
+    text-align:center;
+    font-weight:bold;
+    background:orangered;
+    border-top:1px solid gray;
+    border-left:1px solid gray;
+    color:white;
+}
+.block:hover{
+    background:silver;
+}
+.msg{
+    width:56px;
+    float:left;
+    margin-left:2px;
+    margin-top:6px;
+    padding:11px;
+    font-size:14px;
+    text-align:center;
+    font-weight:bold;
+    background:silver;
+    border-bottom:2px solid gray;
+    border-right:2px solid gray;
+    color:darkslategray;
+}
+.msg:hover{
+    background:skyblue;
+}
+.near{
+    width:98.5%;
+    height:40px;
+    margin-top:55px;
+    margin-left:5px;
+    padding:5px;
+    color:darkslategray;
+    text-transform: capitalize;
+    text-align:left
+}
+.loc{
+     width:98.5%;
+     margin:5px;
+     padding:2px;
+     color:darkslategray;
+     text-transform: capitalize;
+}
+.area{
+     width:48.5%;
+     margin-top:2px;
+     margin-left:5px;
+     float:left;
+     padding:2px;
+     color:darkslategray;
+}
+.amt{
+     border-left:1px solid silver;
+     width:48.2%;
+     margin-top:2px;
+     margin-left:5px;
+     float:left;
+     padding:2px;
+     color:darkslategray;
+}
+.box_details{
+    border:1px solid lightgray;
+    width:100%;
+    height:220px;
+    margin-top:5px;
+    margin-left:5px;
+    float:right;
+}
+.tflr{
+    width:47%;
+    margin-top:5px;
+    margin-left:5px;
+    padding:0px;
+    float:left;
+    color:darkslategray;
+}
+.flr{
+    border-left:1px solid silver;
+    width:49.2%;
+    margin-top:5px;
+    margin-left:10px;
+    padding:0px;
+    float:left;
+    color:darkslategray;
+}
+.age{
+    width:47%;
+    margin-top:5px;
+    margin-left:5px;
+    padding:0px;
+    float:left;
+    color:darkslategray;
+    text-transform: capitalize;
+}
+.fur{
+    border-left:1px solid silver;
+    width:49.2%;
+    margin-top:5px;
+    margin-left:10px;
+    padding:0px;
+    float:left;
+    color:darkslategray;
+    text-transform: capitalize;
+}
+.from{
+    width:47%;
+    margin-top:5px;
+    margin-left:5px;
+    padding:0px;
+    float:left;
+    color:darkslategray;
+}
+.stat{
+    border-left:1px solid silver;
+    width:49.2%;
+    margin-top:5px;
+    margin-left:10px;
+    padding:0px;
+    float:left;
+    color:darkslategray;
+    text-transform: capitalize;
+}
+.ameni{
+    border:1px solid silver;
+    width:98%;
+    height:110px;
+    margin-top:5px;
+    margin-left:5px;
+    float:left;
+    color:darkslategray;
+    text-transform: capitalize;
+}
+.box_description{
+    border:1px solid lightgray;
+    width:100%;
+    height:105px;
+    margin-top:5px;
+    margin-left:5px;
+    float:right;
+}
+.comment{
+    width:98%;
+    margin:2px;
+    height:100px;
+    margin-left:8px;
+    overflow-y: auto;
+    color:darkslategray;
+    text-transform: capitalize;
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color:white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  left:630px;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+.slide_dot{
+    width:99%;
+    margin-top:0px;
+}
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+  background-color: #717171;
+}
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+.edit_land{
+    width:450px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.edit_comment{
+    border:1px solid silver;
+    width:620px;
+    height:60px;
+    resize:none;
+    display:block;
+    font-size:14px;
+    text-transform:capitalize;
+}
+.edit_for{
+    width:140px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.edit_loc{
+    width:140px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.edit_loc1{
+    width:200px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.edit_area{
+    width:60px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.carpet{
+    width:120px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.edit_amt{
+    width:140px;
+    padding:0px;
+}
+.a{
+    width:120px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.b{
+    width:120px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.c{
+    width:120px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.d{
+    width:120px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.e{
+    width:120px;
+    padding:0px;
+    text-transform:capitalize;
+}.f{
+    width:120px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.gift{
+    border:1px solid white;
+    width:102px;
+    float:left;
+    height:25px;
+    margin:0.5px;
+}
+.j{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.k{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.l{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.m{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.n{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.o{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.p{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.q{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.r{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.s{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.t{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.u{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.v{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.w{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.x{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.y{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.z{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+.aa{
+    width:98px;
+    padding:0px;
+    text-transform:capitalize;
+}
+</style>
+    </head>
+    <body>
+        <div class="main_box-{{forloop.counter}}">
+        
+            <form class="main_display" action="/update/{{saledata.id}}" method="post">
+        
+                {% csrf_token %}
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="border:1px solid gray;width:650px;float:left;color:red">
+                    <ol class="carousel-indicators" >
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+        
+                    <div class="carousel-inner" >
+                   {% for sale in data %}
+                        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %} " >
+                            <img class="d-block w-100" name="imag" src="{{sale.image.url}}" alt="First slide" height="525" width="650">
+                        </div>
+                        {% endfor %}
+                    </div>
+        
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" >
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only" >Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true" ></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="box_1">
+                    <div class="for"><input class="edit_for" type="text" name="prop_type" value="{{saledata.property_type}}"/>  For Sale at <input class="edit_loc" type="text" name="location" value="{{saledata.location}}"/> </div>
+                    <input class="aprov" type="submit" value="Update">
+
+                    <button class="block">Block</button>
+                    <a class="msg" >MSG</a>
+                    <div class="near"><b><i class="fa-solid fa-location-crosshairs"></i> Near   :</b> <input class="edit_land" type="text" name="landmark" value="{{saledata.land_mark}}" /> </div>
+                    <div class="loc"><b> <i class="fa-solid fa-location-dot"></i> locations: </b> <input class="edit_loc1" type="text" name="location" value="{{saledata.location}}" /></div>
+                   {% comment %} edit {% endcomment %}
+
+                    <label for="cars">Published:</label>
+                   
+                    <input type="text" name="publish" value="{{saledata.status}}">
+                        
+                        
+                    
+                    {% comment %} end edit {% endcomment %}
+
+                    <div class="area"><b><i class="fa-solid fa-rug"></i> Area :</b> <input class="edit_area" type="text" name="area" value="{{saledata.areasqt}}" /> &nbsp; <input class="carpet" type="text" name="car_built" value="{{saledata.area_type}}" /> </div>
+                    <div class="amt"><b> <i class="fa-solid fa-indian-rupee-sign"></i> Price :</b> <input class="edit_amt" type="text" name="selling_price" value="{{saledata.selling_price}}" /><input type="radio" checked id="sale" name="sale" value="sale"><label for="sale" style="color:crimson;font-size:14px;font-weight:bold;"> Sale </label><br>
+                    </div>
+                    <div class="box_details">
+                        <div class="tflr"><b><i class="fa-solid fa-building"></i> Total Floor            :</b>&nbsp; <input class="a" type="text" name="total_floor" value="{{saledata.total_floor}}" />   </div>
+                        <div class="flr"><b><i class="fa-solid fa-building"></i> Floor No                :</b>&nbsp; <input class="b" type="text" name="floor" value="{{saledata.floor}}" />   </div>
+                        <div class="age"><b><i class="fa-solid fa-cake-candles"></i> Property Age        :</b>&nbsp;  <input class="c" type="text" name="prop_age" value="{{saledata.property_age}}" />     </div>
+                        <div class="fur"><b><i class="fa-solid fa-couch"></i> Furnishing                 :</b>&nbsp; <input class="d" type="text" name="furnish" value="{{saledata.furnishing}}" /> </div>
+                        <div class="from"><b><i class="fa-solid fa-calendar-days"></i> Available From    :</b>&nbsp;  <input class="e" type="text" name="avail" value="{{saledata.date}}" style="font-size:14px"/> </div>
+                        <div class="stat"><b><i class="fa-solid fa-suitcase-rolling"></i> Property Status:</b>&nbsp;  <input class="f" type="text" name="prop_status" value="{{saledata.property_status}}" /> </div>
+        
+                        <div class="ameni"><b> &nbsp; <i class="fa-solid fa-gift"></i> Amenities :</b><br>
+                            <div class="gift"><input class="j" type="text" name="lift" value="{{saledata.lift}}" /></div>
+                            <div class="gift"><input class="k" type="text" name="gym" value="{{saledata.gym}}" /></div>
+                            <div class="gift"><input class="l" type="text" name="swimming_pool" value="{{saledata.swimmingpool}}" /></div>
+                            <div class="gift"><input class="m" type="text" name="pets_allowed" value="{{saledata.petsallowed}}" /></div>
+                            <div class="gift"><input class="n" type="text" name="wifi_internet" value="{{saledata.wifiinternet}}" /></div>
+                            <div class="gift"><input class="o" type="text" name="camera" value="{{saledata.camera}}" /></div>
+                            <div class="gift"><input class="p" type="text" name="club_house" value="{{saledata.club_house}}" /></div>
+                            <div class="gift"><input class="q" type="text" name="fire_safety" value="{{saledata.fire_safety}}" /></div>
+                            <div class="gift"><input class="r" type="text" name="two_wheeler" value="{{saledata.two_wheeler}}" /></div>
+                            <div class="gift"><input class="s" type="text" name="four_wheeler" value="{{saledata.four_wheeler}}" /></div>
+                            <div class="gift"><input class="t" type="text" name="gas_pipe" value="{{saledata.gas_pipe}}" /></div>
+                            <div class="gift"><input class="u" type="text" name="phone_intercom" value="{{saledata.phone_intercom}}" /></div>
+                            <div class="gift"><input class="v" type="text" name="power_backup" value="{{saledata.power_backup}}" /></div>
+                            <div class="gift"><input class="w" type="text" name="servant_room" value="{{saledata.servant_room}}" /></div>
+                            <div class="gift"><input class="x" type="text" name="security_guard" value="{{saledata.security_guard}}" /></div>
+                            <div class="gift"><input class="y" type="text" name="house_keeping" value="{{saledata.house_keeping}}" /></div>
+                            <div class="gift"><input class="z" type="text" name="air_conditioning" value="{{saledata.air_conditioning}}" /></div>
+                            <div class="gift"><input class="aa" type="text" name="children_ground" value="{{saledata.children_ground}}" /></div>
+                        </div>
+                    </div>
+                    <div class="box_description">
+                        <div class="comment"> <b>Property Description :</b> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <textarea class="edit_comment" name="comment">{{saledata.description}}</textarea>
+                           
+                        </div>
+                       
+                       
+                    </div>
+                    
+                </div>
+            </form>
+           
+        </div>
+        
+        
+        
+        <script>
+        $('.edit_for')[0].readOnly = true;
+        $('.edit_loc')[0].readOnly = true;
+        $('.edit_loc1')[0].readOnly = true;
+        $('.edit_area')[0].readOnly = true;
+        $('.carpet')[0].readOnly = true;
+        $('.edit_amt')[0].readOnly = true;
+        $('.a')[0].readOnly = true;
+        $('.b')[0].readOnly = true;
+        $('.c')[0].readOnly = true;
+        $('.d')[0].readOnly = true;
+        $('.e')[0].readOnly = true;
+        $('.f')[0].readOnly = true;
+        $('.j')[0].readOnly = true;
+        $('.k')[0].readOnly = true;
+        $('.l')[0].readOnly = true;
+        $('.m')[0].readOnly = true;
+        $('.n')[0].readOnly = true;
+        $('.o')[0].readOnly= true;
+        $('.p')[0].readOnly = true;
+        $('.q')[0].readOnly = true;
+        $('.r')[0].readOnly = true;
+        $('.s')[0].readOnly = true;
+        $('.t')[0].readOnly = true;
+        $('.u')[0].readOnly = true;
+        $('.v')[0].readOnly = true;
+        $('.w')[0].readOnly = true;
+        $('.x')[0].readOnly = true;
+        $('.y')[0].readOnly = true;
+        $('.z')[0].readOnly = true;
+        $('.aa')[0].readOnly = true;
+        </script>
+        
+    </body>
+</html>

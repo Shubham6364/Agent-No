@@ -436,3 +436,27 @@ def rentcrud(request):
 
 def upload(request):
 	return render(request, 'uploadimg.html')
+
+
+def staffaproval(request,id):
+	saledata = Salepost.objects.get(id=id)
+	salepost = Salepost.objects.all()
+	
+	context = {
+		'saledata':saledata,
+		'data':salepost
+	}
+	return render(request,'staffaproval.html',context)
+
+def update(request,id):
+	if request.method == 'POST':
+		landmark = request.POST.get('landmark')
+		publish = request.POST.get('publish')
+		comment = request.POST.get('comment')
+		y = Salepost(id = id,land_mark = landmark, status = publish,description = comment)
+		y.save()
+		
+		return redirect('salecrud')
+	return render(request,'salecrud.html')
+    	
+	
