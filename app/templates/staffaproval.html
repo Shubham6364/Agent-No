@@ -455,7 +455,7 @@
                    
                     <div class="carousel-inner" >
 
-                   {% for sale in data %}
+                   {% for sale in salepost %}
                         <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %} " >
                             <img class="d-block w-100" name="images" value="{{saledata.image}}"  src="{{sale.image.url}}" alt="First slide" height="525" width="650">
                             <input type="text" name="images" value="{{saledata.image}}" multiple>      

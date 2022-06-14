@@ -65,20 +65,22 @@ def post(request):
    	
 	
 		
-		y =Salepost.objects.create(property_type=baseclass, area_type=area_type, floor=f, total_floor=tf,property_age=pa, property_status=ps,
+		y =Salepost(property_type=baseclass, area_type=area_type, floor=f, total_floor=tf,property_age=pa, property_status=ps,
 		land_mark=lm, location=lo,selling_price=sp, date=da,furnishing=furn,description=des,areasqt=sqt,video=vid, Buy=seller,
 		lift=lift,gym=Gym,swimmingpool=SwimmingPool,petsallowed=petsallowed,wifiinternet=Wifiinternet
 		,childrenPlayground=Childrenplayground,twowheeler=twowheeler,fourwheeler=fourwheeler,towfourwheeler=towfourwheeler,
 		gateaccess=gateaccess,balcony=balcony,image=imag,image1=images1,image2=images2)
-
-
+		
+		
+		# for image in imag:
+		# 	y=Salepost.objects.create(image=image)
 		user_login = User.objects.get(username=request.user.username)
 		y.user = user_login
 
 	
 		
-		
 		y.save()
+		
 		
 		
 	
@@ -249,7 +251,7 @@ def rentdetail(request,detailid1id):
 
 
 def search(request):
-	saledata = Salepost.objects.all().order_by('-date')
+	saledata = Salepost.objects.all().order_by('-date').filter(status='publish')
 	myCountry = request.GET.getlist('myCountry')
 	for  e in myCountry:
 		try:
@@ -278,7 +280,7 @@ def search(request):
 
 	# Rentdata filter search bar 
 
-	rentdata = Rentpost.objects.all().order_by('-date')
+	rentdata = Rentpost.objects.all().order_by('-date').filter(status='publish')
 	myCountry = request.GET.get('myCountry')
 	for  e in myCountry:
 		try:
@@ -468,12 +470,6 @@ def staffaproval(request,id):
 		gateaccess = request.POST.get('gateaccess')
 		images = request.POST.get('images')
 
-		# for  e in images:
-		# 	try:
-		# 		images.append(int(e))
-		# 	except Exception as e:
-		# 		pass	
-		# saledata = Salepost.object.create(image=images)
 		
 
 		
@@ -491,8 +487,7 @@ def staffaproval(request,id):
 			petsallowed=petsallowed,wifiinternet=Wifiinternet,childrenPlayground=Childrenplayground,
 			twowheeler=twowheeler,fourwheeler=fourwheeler,gateaccess=gateaccess,image=images)
 	
-		user_login = User.objects.get(username=request.user.username)
-		saledata.user = user_login
+		
 
 		
 		
@@ -502,12 +497,12 @@ def staffaproval(request,id):
 		return redirect('salecrud')
 	context = {
 		'saledata':saledata,
-		'data':salepost
+		'salepost':salepost
+		
 	}
 	return render(request,'staffaproval.html',context)
 
 def update(request):
-	
 	return render(request,'salecrud.html')
     	
 	
