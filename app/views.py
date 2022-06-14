@@ -1,4 +1,5 @@
-
+import os
+import subprocess
 from email.mime import image
 from multiprocessing import context
 from random import choices
@@ -449,14 +450,61 @@ def staffaproval(request,id):
 	return render(request,'staffaproval.html',context)
 
 def update(request,id):
+	saledata = Salepost.objects.get(id=id)
 	if request.method == 'POST':
 		landmark = request.POST.get('landmark')
 		publish = request.POST.get('publish')
 		comment = request.POST.get('comment')
-		y = Salepost(id = id,land_mark = landmark, status = publish,description = comment)
-		y.save()
+		baseclass = request.POST.get('Property_Type')
+		area_type = request.POST.get('aname')
+		f = request.POST.get('floor')
+		tf = request.POST.get('total_floors')
+		pa = request.POST.get('property_age')
+		ps = request.POST.get('property_status')
+		lo = request.POST.get('myCountry')
+		sp = request.POST.get('sale')
+		da = request.POST.get('date')
+		furn = request.POST.get('furnishing')
+		sqt = request.POST.get('sqt')
+		lift = request.POST.get('lift')
+		Gym = request.POST.get('Gym')
+		SwimmingPool = request.POST.get('SwimmingPool')
+		petsallowed = request.POST.get('petsallowed')
+		Wifiinternet = request.POST.get('Wifiinternet')
+		Childrenplayground = request.POST.get('Childrenplayground')
+		twowheeler = request.POST.get('twowheeler')
+		fourwheeler = request.POST.get('fourwheeler')
+		gateaccess = request.POST.get('gateaccess')
+		images = request.FILES.get('images')
+
 		
+		
+
+		
+	
+			
+	
+   	
+	
+		
+		
+		saledata = Salepost(id = id,land_mark = landmark, status = publish,description = comment,
+			property_type=baseclass,area_type=area_type,floor=f,
+			total_floor=tf,property_age=pa,property_status=ps,location=lo,selling_price=sp,
+			date=da,furnishing=furn,areasqt=sqt,lift=lift,gym=Gym,swimmingpool=SwimmingPool,
+			petsallowed=petsallowed,wifiinternet=Wifiinternet,childrenPlayground=Childrenplayground,
+			twowheeler=twowheeler,fourwheeler=fourwheeler,gateaccess=gateaccess,image=images
+		)
+	
+		
+		
+		
+		# saledata = Salepost(id=id,land_mark=landmark,status=publish,description=comment,image=images,location=lo)
+		saledata.save()
+		saledata ={
+			'saledata':saledata
+			}
 		return redirect('salecrud')
-	return render(request,'salecrud.html')
+	return render(request,'salecrud.html',saledata)
     	
 	

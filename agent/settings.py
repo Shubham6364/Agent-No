@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import imp
 from pathlib import Path
 import os
+from pickle import FALSE
 
 
 
@@ -150,7 +151,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+DATE_FORMAT = 'D-m-y'
+DATE_INPUT_FORMATS=['%D-%M-%Y']
+USE_L10N = False
 
 STATIC_URL = '/static/'
 
