@@ -32,6 +32,6 @@ urlpatterns = [
       path('rentcrud',views.rentcrud,name='rentcrud'),
       path('upload/',views.upload,name='upload'),
       path('staffaproval/<str:id>',views.staffaproval,name='staffaproval'),
-      path('update/<str:id>',views.update,name='update'),
+      path('update',views.update,name='update'),
 
  ]

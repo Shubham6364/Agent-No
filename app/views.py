@@ -75,7 +75,7 @@ def post(request):
 		user_login = User.objects.get(username=request.user.username)
 		y.user = user_login
 
-		print(imag)
+	
 		
 		
 		y.save()
@@ -442,15 +442,6 @@ def upload(request):
 def staffaproval(request,id):
 	saledata = Salepost.objects.get(id=id)
 	salepost = Salepost.objects.all()
-	
-	context = {
-		'saledata':saledata,
-		'data':salepost
-	}
-	return render(request,'staffaproval.html',context)
-
-def update(request,id):
-	saledata = Salepost.objects.get(id=id)
 	if request.method == 'POST':
 		landmark = request.POST.get('landmark')
 		publish = request.POST.get('publish')
@@ -500,15 +491,23 @@ def update(request,id):
 			petsallowed=petsallowed,wifiinternet=Wifiinternet,childrenPlayground=Childrenplayground,
 			twowheeler=twowheeler,fourwheeler=fourwheeler,gateaccess=gateaccess,image=images)
 	
-		
+		user_login = User.objects.get(username=request.user.username)
+		saledata.user = user_login
+
 		
 		
 		# saledata = Salepost(id=id,land_mark=landmark,status=publish,description=comment,image=images,location=lo)
 		saledata.save()
-		# saledata ={
-		# 	'saledata':saledata
-		# 	}
+		
 		return redirect('salecrud')
+	context = {
+		'saledata':saledata,
+		'data':salepost
+	}
+	return render(request,'staffaproval.html',context)
+
+def update(request):
+	
 	return render(request,'salecrud.html')
     	
 	
