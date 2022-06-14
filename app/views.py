@@ -251,7 +251,7 @@ def rentdetail(request,detailid1id):
 
 
 def search(request):
-	saledata = Salepost.objects.all().order_by('-date').filter(status='publish')
+	saledata = Salepost.objects.filter(status='publish')	
 	myCountry = request.GET.getlist('myCountry')
 	for  e in myCountry:
 		try:
@@ -278,9 +278,9 @@ def search(request):
 	saledata = saledata.filter(property_type__in=propertytype)
 
 
-	# Rentdata filter search bar 
+	# # Rentdata filter search bar 
 
-	rentdata = Rentpost.objects.all().order_by('-date').filter(status='publish')
+	rentdata = Rentpost.objects.filter(status='publish')
 	myCountry = request.GET.get('myCountry')
 	for  e in myCountry:
 		try:
@@ -306,11 +306,16 @@ def search(request):
 	rentdata = rentdata.filter(property_type__in=propertytype)
 	
 	
+	
+	context={
+		'saledata':saledata,
+		'rentdata':rentdata
+	}
 
 	
 
 		
-	return render(request, 'search.html',{'data':saledata,'info':rentdata})
+	return render(request, 'search.html',context)
 
 
 
