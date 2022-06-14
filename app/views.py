@@ -475,9 +475,14 @@ def update(request,id):
 		twowheeler = request.POST.get('twowheeler')
 		fourwheeler = request.POST.get('fourwheeler')
 		gateaccess = request.POST.get('gateaccess')
-		images = request.FILES.get('images')
+		images = request.POST.get('images')
 
-		
+		# for  e in images:
+		# 	try:
+		# 		images.append(int(e))
+		# 	except Exception as e:
+		# 		pass	
+		# saledata = Salepost.object.create(image=images)
 		
 
 		
@@ -493,18 +498,17 @@ def update(request,id):
 			total_floor=tf,property_age=pa,property_status=ps,location=lo,selling_price=sp,
 			date=da,furnishing=furn,areasqt=sqt,lift=lift,gym=Gym,swimmingpool=SwimmingPool,
 			petsallowed=petsallowed,wifiinternet=Wifiinternet,childrenPlayground=Childrenplayground,
-			twowheeler=twowheeler,fourwheeler=fourwheeler,gateaccess=gateaccess,image=images
-		)
+			twowheeler=twowheeler,fourwheeler=fourwheeler,gateaccess=gateaccess,image=images)
 	
 		
 		
 		
 		# saledata = Salepost(id=id,land_mark=landmark,status=publish,description=comment,image=images,location=lo)
 		saledata.save()
-		saledata ={
-			'saledata':saledata
-			}
+		# saledata ={
+		# 	'saledata':saledata
+		# 	}
 		return redirect('salecrud')
-	return render(request,'salecrud.html',saledata)
+	return render(request,'salecrud.html')
     	
 	

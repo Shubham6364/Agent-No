@@ -443,7 +443,7 @@
     <body>
         <div class="main_box-{{forloop.counter}}">
         
-            <form class="main_display" action="/update/{{saledata.id}}" method="post" enctype="multipart/form-data">
+            <form class="main_display" action="/salecrud" method="post" enctype="multipart/form-data">
         
                 {% csrf_token %}
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="border:1px solid gray;width:650px;float:left;color:red">
@@ -457,8 +457,8 @@
 
                    {% for sale in data %}
                         <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %} " >
-                            <img class="d-block w-100"   src="{{sale.image.url}}" alt="First slide" height="525" width="650">
-                           
+                            <img class="d-block w-100" name="images" value="{{saledata.image}}"  src="{{sale.image.url}}" alt="First slide" height="525" width="650">
+                            <input type="text" name="images" value="{{saledata.image}}" multiple>      
                         </div>
                         {% endfor %}
                        
@@ -491,11 +491,11 @@
                    
                     <input type="text" name="publish" value="{{saledata.status}}">
                     
-                    <input type="text" name="images" value="{{saledata.image}}">              
+                            
                    
 
-                    <div class="area"><b><i class="fa-solid fa-rug"></i> Area :</b> <input class="edit_area" type="text" name="aname" value="{{saledata.areasqt}}" /> &nbsp; <input class="carpet" type="text" name="car_built" value="{{saledata.area_type}}" /> </div>
-                    <div class="amt"><b> <i class="fa-solid fa-indian-rupee-sign"></i> Price :</b> <input class="edit_amt" type="text" name="sale" value="{{saledata.selling_price}}" /><input type="radio" checked id="sale" name="sale" value="sale"><label for="sale" name="seller" style="color:crimson;font-size:14px;font-weight:bold;"> Sale </label><br>
+                    <div class="area"><b><i class="fa-solid fa-rug"></i> Area :</b> <input class="edit_area" type="text" name="aname" value="{{saledata.area_type}}" /> &nbsp; <input class="carpet" type="text" name="sqt" value="{{saledata.areasqt}}" /> </div>
+                    <div class="amt"><b> <i class="fa-solid fa-indian-rupee-sign"></i> Price :</b> <input class="edit_amt" type="text" name="sale" value="{{saledata.selling_price}}" /><input type="radio" checked id="sale" name="sale" value="{{  saledata.selling_price}}"><label for="sale" name="seller" style="color:crimson;font-size:14px;font-weight:bold;"> Sale </label><br>
                     </div>
                     <div class="box_details">
                         <div class="tflr"><b><i class="fa-solid fa-building"></i> Total Floor            :</b>&nbsp; <input class="a" type="text" name="total_floors" value="{{saledata.total_floor}}" />   </div>
