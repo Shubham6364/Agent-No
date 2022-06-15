@@ -443,7 +443,7 @@
     <body>
         <div class="main_box-{{forloop.counter}}">
         
-            <form class="main_display" action="{{saledata.id}}" method="post" enctype="multipart/form-data">
+            <form class="main_display" action="/staffaproval/{{data.id}}" method="post" enctype="multipart/form-data">
                
                 {% csrf_token %}
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="border:1px solid gray;width:650px;float:left;color:red">
@@ -478,13 +478,13 @@
                    
                 </div>
                 <div class="box_1">
-                    <div class="for"> {{saledata.property_type}} For Sale at {{saledata.location}}</div>
+                    <div class="for"> {{data.property_type}} For Sale at {{data.location}}</div>
                     <input  class="aprov" type="submit" value="Update">
 
                     <button class="block">Block</button>
                     <a class="msg" >MSG</a>
                     <div class="near"><b><i class="fa-solid fa-location-crosshairs"></i> Near   :</b> <input class="edit_land" type="text" name="landmark" value="{{saledata.land_mark}}"> </div>
-                    <div class="loc"><b> <i class="fa-solid fa-location-dot"></i> locations: </b> {{saledata.location}}</div>
+                    <div class="loc"><b> <i class="fa-solid fa-location-dot"></i> locations: </b> {{data.location}}</div>
                    {% comment %} edit {% endcomment %}
 
                     <label for="cars">Published:</label>
@@ -494,16 +494,16 @@
                             
                    
 
-                    <div class="area"><b><i class="fa-solid fa-rug"></i> Area :</b> {{saledata.area_type}}    {{saledata.areasqt}} </div>
-                    <div class="amt"><b> <i class="fa-solid fa-indian-rupee-sign"></i> Price :</b> {{saledata.selling_price}}&nbsp;&nbsp;<input type="radio" checked id="sale" name="sale" value="{{  saledata.selling_price}}"><label for="sale" name="seller" style="color:crimson;font-size:14px;font-weight:bold;"> Sale </label><br>
+                    <div class="area"><b><i class="fa-solid fa-rug"></i> Area :</b> {{data.area_type}}    {{data.areasqt}} </div>
+                    <div class="amt"><b> <i class="fa-solid fa-indian-rupee-sign"></i> Price :</b> {{data.selling_price}}&nbsp;&nbsp;<input type="radio" checked id="sale" name="sale" value="{{  saledata.selling_price}}"><label for="sale" name="seller" style="color:crimson;font-size:14px;font-weight:bold;"> Sale </label><br>
                     </div>
                     <div class="box_details">
-                        <div class="tflr"><b><i class="fa-solid fa-building"></i> Total Floor            :</b>&nbsp;{{saledata.total_floor}}  </div>
-                        <div class="flr"><b><i class="fa-solid fa-building"></i> Floor No                :</b>&nbsp{{saledata.floor}}   </div>
-                        <div class="age"><b><i class="fa-solid fa-cake-candles"></i> Property Age        :</b>&nbsp; {{saledata.property_age}}    </div>
-                        <div class="fur"><b><i class="fa-solid fa-couch"></i> Furnishing                 :</b>&nbsp;{{saledata.furnishing}} </div>
-                        <div class="from"><b><i class="fa-solid fa-calendar-days"></i> Available From    :</b>&nbsp; {{saledata.date}}  </div>
-                        <div class="stat"><b><i class="fa-solid fa-suitcase-rolling"></i> Property Status:</b>&nbsp;  {{saledata.property_status}} </div>
+                        <div class="tflr"><b><i class="fa-solid fa-building"></i> Total Floor            :</b>&nbsp;{{data.total_floor}}  </div>
+                        <div class="flr"><b><i class="fa-solid fa-building"></i> Floor No                :</b>&nbsp{{data.floor}}   </div>
+                        <div class="age"><b><i class="fa-solid fa-cake-candles"></i> Property Age        :</b>&nbsp; {{data.property_age}}    </div>
+                        <div class="fur"><b><i class="fa-solid fa-couch"></i> Furnishing                 :</b>&nbsp;{{data.furnishing}} </div>
+                        <div class="from"><b><i class="fa-solid fa-calendar-days"></i> Available From    :</b>&nbsp; {{data.date}}  </div>
+                        <div class="stat"><b><i class="fa-solid fa-suitcase-rolling"></i> Property Status:</b>&nbsp;  {{data.property_status}} </div>
         
                         <div class="ameni"><b> &nbsp; <i class="fa-solid fa-gift"></i> Amenities :</b><br>
                             <div class="gift">{{saledata.lift}}</div>

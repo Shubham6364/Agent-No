@@ -450,7 +450,7 @@ def upload(request):
 
 
 def staffaproval(request,id):
-	saledata = Salepost.objects.get(id=id)
+	data = Salepost.objects.get(id=id)
 	salepost = Salepost.objects.all()
 	if request.method == 'POST':
 		landmark = request.POST.get('landmark')
@@ -458,30 +458,7 @@ def staffaproval(request,id):
 		comment = request.POST.get('comment')
 		images = request.POST.get('images')
 
-		baseclass = request.POST.get('Property_Type')
-		area_type = request.POST.get('aname')
-		f = request.POST.get('floor')
-		tf = request.POST.get('total_floors')
-		pa = request.POST.get('property_age')
-		ps = request.POST.get('property_status')
-		lo = request.POST.get('myCountry')
-		sp = request.POST.get('sale')
-		da = request.POST.get('date')
-		furn = request.POST.get('furnishing')
-		sqt = request.POST.get('sqt')
-		vid = request.FILES.get('vid')
-		seller = request.POST.get('seller')
-		lift = request.POST.get('lift')
-		Gym = request.POST.get('Gym')
-		SwimmingPool = request.POST.get('SwimmingPool')
-		petsallowed = request.POST.get('petsallowed')
-		Wifiinternet = request.POST.get('Wifiinternet')
-		Childrenplayground = request.POST.get('Childrenplayground')
-		twowheeler = request.POST.get('twowheeler')
-		fourwheeler = request.POST.get('fourwheeler')
-		towfourwheeler = request.POST.get('towfourwheeler')
-		gateaccess = request.POST.get('gateaccess')
-		balcony = request.POST.get('balcony')
+		
 		
 
 		
@@ -495,22 +472,17 @@ def staffaproval(request,id):
 		
 		
 		data = Salepost(id = id,land_mark = landmark, status = publish,description = comment,
-			image=images,property_type=baseclass, area_type=area_type, floor=f, total_floor=tf,property_age=pa, property_status=ps,
-		 location=lo,selling_price=sp, date=da,furnishing=furn,areasqt=sqt,video=vid, Buy=seller,
-		lift=lift,gym=Gym,swimmingpool=SwimmingPool,petsallowed=petsallowed,wifiinternet=Wifiinternet
-		,childrenPlayground=Childrenplayground,twowheeler=twowheeler,fourwheeler=fourwheeler,towfourwheeler=towfourwheeler,
-		gateaccess=gateaccess,balcony=balcony)
+			image=images,)
 	
 		user_login = User.objects.get(username=request.user.username)
 		data.user = user_login
-
 		
 		
-		# saledata = Salepost(id=id,land_mark=landmark,status=publish,description=comment,image=images,location=lo)
+		
 		data.save()
 		return redirect('salecrud')
 	context = {
-		'saledata':saledata,
+		'data':data,
 		'salepost':salepost
 		
 		
