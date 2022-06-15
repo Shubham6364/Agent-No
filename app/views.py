@@ -451,7 +451,7 @@ def upload(request):
 
 def staffaproval(request,id):
 	saledata = Salepost.objects.get(id=id)
-	
+	salepost = Salepost.objects.all()
 	if request.method == 'POST':
 		landmark = request.POST.get('landmark')
 		publish = request.POST.get('publish')
@@ -510,12 +510,13 @@ def staffaproval(request,id):
 		data.save()
 		return redirect('salecrud')
 	context = {
-		'saledata':saledata
+		'saledata':saledata,
+		'salepost':salepost
 		
 		
 		
 	}
-	return render(request,'salecrud.html',context)
+	return render(request,'staffaproval.html',context)
 
 
     	
