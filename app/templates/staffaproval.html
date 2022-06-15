@@ -443,7 +443,7 @@
     <body>
         <div class="main_box-{{forloop.counter}}">
         
-            <form class="main_display" action="/staffaproval/{{saledata.id}}" method="post" enctype="multipart/form-data">
+            <form class="main_display" action="{{saledata.id}}" method="post" enctype="multipart/form-data">
                
                 {% csrf_token %}
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="border:1px solid gray;width:650px;float:left;color:red">
@@ -457,7 +457,7 @@
 
                    {% for sale in salepost %}
                         <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %} " >
-                            <img class="d-block w-100" name="images" value="{{saledata.image}}"  src="{{sale.image.url}}" alt="First slide" height="525" width="650">
+                            <img class="d-block w-100" name="images"  src="{{sale.image.url}}" alt="First slide" height="525" width="650">
                             <input type="text" name="images" value="{{saledata.image}}" multiple>      
                         </div>
                         {% endfor %}
@@ -478,13 +478,13 @@
                    
                 </div>
                 <div class="box_1">
-                    <div class="for"><input class="edit_for" type="text" name="Property_Type" value="{{saledata.property_type}}">  For Sale at <input class="edit_loc" type="text" name="location" value="{{saledata.location}}"/> </div>
-                    <input class="aprov" type="submit" value="Update">
+                    <div class="for"> {{saledata.property_type}} For Sale at {{saledata.location}}</div>
+                    <input  class="aprov" type="submit" value="Update">
 
                     <button class="block">Block</button>
                     <a class="msg" >MSG</a>
                     <div class="near"><b><i class="fa-solid fa-location-crosshairs"></i> Near   :</b> <input class="edit_land" type="text" name="landmark" value="{{saledata.land_mark}}"> </div>
-                    <div class="loc"><b> <i class="fa-solid fa-location-dot"></i> locations: </b> <input class="edit_loc1" type="text" name="myCountry" value="{{saledata.location}}" ></div>
+                    <div class="loc"><b> <i class="fa-solid fa-location-dot"></i> locations: </b> {{saledata.location}}</div>
                    {% comment %} edit {% endcomment %}
 
                     <label for="cars">Published:</label>
@@ -494,38 +494,38 @@
                             
                    
 
-                    <div class="area"><b><i class="fa-solid fa-rug"></i> Area :</b> <input class="edit_area" type="text" name="aname" value="{{saledata.area_type}}" /> &nbsp; <input class="carpet" type="text" name="sqt" value="{{saledata.areasqt}}" /> </div>
-                    <div class="amt"><b> <i class="fa-solid fa-indian-rupee-sign"></i> Price :</b> <input class="edit_amt" type="text" name="sale" value="{{saledata.selling_price}}" /><input type="radio" checked id="sale" name="sale" value="{{  saledata.selling_price}}"><label for="sale" name="seller" style="color:crimson;font-size:14px;font-weight:bold;"> Sale </label><br>
+                    <div class="area"><b><i class="fa-solid fa-rug"></i> Area :</b> {{saledata.area_type}}    {{saledata.areasqt}} </div>
+                    <div class="amt"><b> <i class="fa-solid fa-indian-rupee-sign"></i> Price :</b> {{saledata.selling_price}}&nbsp;&nbsp;<input type="radio" checked id="sale" name="sale" value="{{  saledata.selling_price}}"><label for="sale" name="seller" style="color:crimson;font-size:14px;font-weight:bold;"> Sale </label><br>
                     </div>
                     <div class="box_details">
-                        <div class="tflr"><b><i class="fa-solid fa-building"></i> Total Floor            :</b>&nbsp; <input class="a" type="text" name="total_floors" value="{{saledata.total_floor}}" />   </div>
-                        <div class="flr"><b><i class="fa-solid fa-building"></i> Floor No                :</b>&nbsp; <input class="b" type="text" name="floor" value="{{saledata.floor}}" />   </div>
-                        <div class="age"><b><i class="fa-solid fa-cake-candles"></i> Property Age        :</b>&nbsp;  <input class="c" type="text" name="property_age" value="{{saledata.property_age}}" />     </div>
-                        <div class="fur"><b><i class="fa-solid fa-couch"></i> Furnishing                 :</b>&nbsp; <input class="d" type="text" name="furnishing" value="{{saledata.furnishing}}" /> </div>
-                        <div class="from"><b><i class="fa-solid fa-calendar-days"></i> Available From    :</b>&nbsp;  <input class="e" type="text" name="date" value="{{saledata.date}}" style="font-size:14px"/> </div>
-                        <div class="stat"><b><i class="fa-solid fa-suitcase-rolling"></i> Property Status:</b>&nbsp;  <input class="f" type="text" name="property_status" value="{{saledata.property_status}}" /> </div>
+                        <div class="tflr"><b><i class="fa-solid fa-building"></i> Total Floor            :</b>&nbsp;{{saledata.total_floor}}  </div>
+                        <div class="flr"><b><i class="fa-solid fa-building"></i> Floor No                :</b>&nbsp{{saledata.floor}}   </div>
+                        <div class="age"><b><i class="fa-solid fa-cake-candles"></i> Property Age        :</b>&nbsp; {{saledata.property_age}}    </div>
+                        <div class="fur"><b><i class="fa-solid fa-couch"></i> Furnishing                 :</b>&nbsp;{{saledata.furnishing}} </div>
+                        <div class="from"><b><i class="fa-solid fa-calendar-days"></i> Available From    :</b>&nbsp; {{saledata.date}}  </div>
+                        <div class="stat"><b><i class="fa-solid fa-suitcase-rolling"></i> Property Status:</b>&nbsp;  {{saledata.property_status}} </div>
         
                         <div class="ameni"><b> &nbsp; <i class="fa-solid fa-gift"></i> Amenities :</b><br>
-                            <div class="gift"><input class="j" type="text" name="lift" value="{{saledata.lift}}" /></div>
-                            <div class="gift"><input class="k" type="text" name="Gym" value="{{saledata.gym}}" /></div>
-                            <div class="gift"><input class="l" type="text" name="SwimmingPool" value="{{saledata.swimmingpool}}" /></div>
-                            <div class="gift"><input class="m" type="text" name="petsallowed" value="{{saledata.petsallowed}}" /></div>
-                            <div class="gift"><input class="n" type="text" name="Wifiinternet" value="{{saledata.wifiinternet}}" /></div>
-                            <div class="gift"><input class="o" type="text" name="camera" value="{{saledata.camera}}" /></div>
-                            <div class="gift"><input class="p" type="text" name="club_house" value="{{saledata.club_house}}" /></div>
-                            <div class="gift"><input class="q" type="text" name="fire_safety" value="{{saledata.fire_safety}}" /></div>
-                            <div class="gift"><input class="r" type="text" name="twowheeler" value="{{saledata.two_wheeler}}" /></div>
-                            <div class="gift"><input class="s" type="text" name="fourwheeler" value="{{saledata.four_wheeler}}" /></div>
-                            <div class="gift"><input class="t" type="text" name="gas_pipe" value="{{saledata.gas_pipe}}" /></div>
-                            <div class="gift"><input class="u" type="text" name="phone_intercom" value="{{saledata.phone_intercom}}" /></div>
-                            <div class="gift"><input class="v" type="text" name="power_backup" value="{{saledata.power_backup}}" /></div>
-                            <div class="gift"><input class="w" type="text" name="servant_room" value="{{saledata.servant_room}}" /></div>
-                            <div class="gift"><input class="x" type="text" name="gateaccess" value="{{saledata.security_guard}}" /></div>
-                            <div class="gift"><input class="y" type="text" name="house_keeping" value="{{saledata.house_keeping}}" /></div>
-                            <div class="gift"><input class="z" type="text" name="air_conditioning" value="{{saledata.air_conditioning}}" /></div>
-                            <div class="gift"><input class="aa" type="text" name="Childrenplayground" value="{{saledata.children_ground}}" /></div>
+                            <div class="gift">{{saledata.lift}}</div>
+                            <div class="gift">{{saledata.gym}}</div>
+                            <div class="gift"> {{saledata.swimmingpool}}</div>
+                            <div class="gift">{{saledata.petsallowed}}</div>
+                            <div class="gift">{{saledata.wifiinternet}}</div>
+                            <div class="gift">{{saledata.camera}}</div>
+                            <div class="gift">{{saledata.club_house}}</div>
+                            <div class="gift">{{saledata.fire_safety}}</div>
+                            <div class="gift">{{saledata.two_wheeler}}</div>
+                            <div class="gift">{{saledata.four_wheeler}}</div>
+                            <div class="gift">{{saledata.gas_pipe}}</div>
+                            <div class="gift">{{saledata.phone_intercom}}</div>
+                            <div class="gift">{{saledata.power_backup}}</div>
+                            <div class="gift">{{saledata.servant_room}}</div>
+                            <div class="gift">{{saledata.security_guard}}</div>
+                            <div class="gift"> {{saledata.house_keeping}}</div>
+                            <div class="gift"> {{saledata.air_conditioning}}</div>
+                            <div class="gift"> {{saledata.children_ground}}</div>
                         </div>
-                    </div>
+                    </div
                     <div class="box_description">
                         <div class="comment"> <b>Property Description :</b> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <textarea class="edit_comment" name="comment">{{saledata.description}}</textarea>

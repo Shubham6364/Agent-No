@@ -225,6 +225,7 @@ def loginpage(request):
 def main(request):
 	saledata = Salepost.objects.filter(status='Publish').order_by('-date')
 	rentdata = Rentpost.objects.filter(status='Publish').order_by('-date')
+	
 
 		# sale paginator
 	
@@ -251,13 +252,14 @@ def rentdetail(request,detailid1id):
 
 
 def search(request):
-	saledata = Salepost.objects.filter(status='publish')	
+	saledata = Salepost.objects.filter(status='Publish')	
 	myCountry = request.GET.getlist('myCountry')
 	for  e in myCountry:
 		try:
 			myCountry.append(int(e))
 		except Exception as e:
-			pass	
+			pass
+		print (myCountry)	
 	saledata = saledata.filter(location__in=myCountry)
 	
 	seller = request.GET.get('seller')
@@ -265,7 +267,8 @@ def search(request):
 		try:
 			seller.append(int(e))
 		except Exception as e:
-			pass	
+			pass
+		print (seller)	
 	saledata = saledata.filter(Buy__icontains=seller)
 
 
@@ -275,18 +278,20 @@ def search(request):
 			propertytype.append(int(e))
 		except Exception as e:
 			pass
+		print (propertytype)
 	saledata = saledata.filter(property_type__in=propertytype)
 
 
 	# # Rentdata filter search bar 
 
-	rentdata = Rentpost.objects.filter(status='publish')
+	rentdata = Rentpost.objects.filter(status='Publish')
 	myCountry = request.GET.get('myCountry')
 	for  e in myCountry:
 		try:
 			myCountry.append(int(e))
 		except Exception as e:
-			pass	
+			pass
+			
 	rentdata = rentdata.filter(location__icontains=myCountry)
 	
 	seller = request.GET.get('seller')
@@ -305,11 +310,9 @@ def search(request):
 			pass
 	rentdata = rentdata.filter(property_type__in=propertytype)
 	
-	
-	
 	context={
-		'saledata':saledata,
-		'rentdata':rentdata
+		'rentdata':rentdata,
+		'saledata':saledata
 	}
 
 	
@@ -448,11 +451,13 @@ def upload(request):
 
 def staffaproval(request,id):
 	saledata = Salepost.objects.get(id=id)
-	salepost = Salepost.objects.all()
+	
 	if request.method == 'POST':
 		landmark = request.POST.get('landmark')
 		publish = request.POST.get('publish')
 		comment = request.POST.get('comment')
+		images = request.POST.get('images')
+
 		baseclass = request.POST.get('Property_Type')
 		area_type = request.POST.get('aname')
 		f = request.POST.get('floor')
@@ -464,6 +469,8 @@ def staffaproval(request,id):
 		da = request.POST.get('date')
 		furn = request.POST.get('furnishing')
 		sqt = request.POST.get('sqt')
+		vid = request.FILES.get('vid')
+		seller = request.POST.get('seller')
 		lift = request.POST.get('lift')
 		Gym = request.POST.get('Gym')
 		SwimmingPool = request.POST.get('SwimmingPool')
@@ -472,8 +479,10 @@ def staffaproval(request,id):
 		Childrenplayground = request.POST.get('Childrenplayground')
 		twowheeler = request.POST.get('twowheeler')
 		fourwheeler = request.POST.get('fourwheeler')
+		towfourwheeler = request.POST.get('towfourwheeler')
 		gateaccess = request.POST.get('gateaccess')
-		images = request.POST.get('images')
+		balcony = request.POST.get('balcony')
+		
 
 		
 
@@ -485,29 +494,29 @@ def staffaproval(request,id):
 	
 		
 		
-		saledata = Salepost(id = id,land_mark = landmark, status = publish,description = comment,
-			property_type=baseclass,area_type=area_type,floor=f,
-			total_floor=tf,property_age=pa,property_status=ps,location=lo,selling_price=sp,
-			date=da,furnishing=furn,areasqt=sqt,lift=lift,gym=Gym,swimmingpool=SwimmingPool,
-			petsallowed=petsallowed,wifiinternet=Wifiinternet,childrenPlayground=Childrenplayground,
-			twowheeler=twowheeler,fourwheeler=fourwheeler,gateaccess=gateaccess,image=images)
+		data = Salepost(id = id,land_mark = landmark, status = publish,description = comment,
+			image=images,property_type=baseclass, area_type=area_type, floor=f, total_floor=tf,property_age=pa, property_status=ps,
+		 location=lo,selling_price=sp, date=da,furnishing=furn,areasqt=sqt,video=vid, Buy=seller,
+		lift=lift,gym=Gym,swimmingpool=SwimmingPool,petsallowed=petsallowed,wifiinternet=Wifiinternet
+		,childrenPlayground=Childrenplayground,twowheeler=twowheeler,fourwheeler=fourwheeler,towfourwheeler=towfourwheeler,
+		gateaccess=gateaccess,balcony=balcony)
 	
-		
+		user_login = User.objects.get(username=request.user.username)
+		data.user = user_login
 
 		
 		
 		# saledata = Salepost(id=id,land_mark=landmark,status=publish,description=comment,image=images,location=lo)
-		saledata.save()
-		
+		data.save()
 		return redirect('salecrud')
 	context = {
-		'saledata':saledata,
-		'salepost':salepost
+		'saledata':saledata
+		
+		
 		
 	}
-	return render(request,'staffaproval.html',context)
+	return render(request,'salecrud.html',context)
 
-def update(request):
-	return render(request,'salecrud.html')
+
     	
 	
