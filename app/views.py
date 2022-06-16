@@ -252,7 +252,7 @@ def rentdetail(request,detailid1id):
 
 
 def search(request):
-	saledata = Salepost.objects.filter(status='Publish')	
+	saledata = Salepost.objects.all()	
 	myCountry = request.GET.getlist('myCountry')
 	for  e in myCountry:
 		try:
@@ -284,7 +284,7 @@ def search(request):
 
 	# # Rentdata filter search bar 
 
-	rentdata = Rentpost.objects.filter(status='Publish')
+	rentdata = Rentpost.objects.all()
 	myCountry = request.GET.get('myCountry')
 	for  e in myCountry:
 		try:
@@ -449,46 +449,7 @@ def upload(request):
 	return render(request, 'uploadimg.html')
 
 
-def staffaproval(request,id):
-	data = Salepost.objects.get(id=id)
-	salepost = Salepost.objects.all()
-	if request.method == 'POST':
-		landmark = request.POST.get('landmark')
-		publish = request.POST.get('publish')
-		comment = request.POST.get('comment')
-		images = request.POST.get('images')
 
-		
-		
-
-		
-
-		
-	
-			
-	
-   	
-	
-		
-		
-		data = Salepost(id = id,land_mark = landmark, status = publish,description = comment,
-			image=images,)
-	
-		user_login = User.objects.get(username=request.user.username)
-		data.user = user_login
-		
-		
-		
-		data.save()
-		return redirect('salecrud')
-	context = {
-		'data':data,
-		'salepost':salepost
-		
-		
-		
-	}
-	return render(request,'staffaproval.html',context)
 
 
     	
