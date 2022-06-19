@@ -286,7 +286,7 @@ def search(request):
 	# relate products
 
 	
-	
+	real = Salepost.objects.select_related('user').all()
 
 
 
@@ -321,6 +321,7 @@ def search(request):
 	context={
 		'rentdata':rentdata,
 		'saledata':saledata,
+		'real':real,
 		
 	}
 
