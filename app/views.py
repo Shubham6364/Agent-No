@@ -1,4 +1,5 @@
 import os
+import random
 import subprocess
 from email.mime import image
 from multiprocessing import context
@@ -223,8 +224,8 @@ def loginpage(request):
 
 #mancontainer page
 def main(request):
-	saledata = Salepost.objects.filter(status='Publish').order_by('-date')
-	rentdata = Rentpost.objects.filter(status='Publish').order_by('-date')
+	saledata = Salepost.objects.all()
+	rentdata = Rentpost.objects.all()
 	
 
 		# sale paginator
@@ -252,7 +253,8 @@ def rentdetail(request,detailid1id):
 
 
 def search(request):
-	saledata = Salepost.objects.all()	
+	saledata = Salepost.objects.select_related('user').all()
+	
 	myCountry = request.GET.getlist('myCountry')
 	for  e in myCountry:
 		try:
@@ -280,6 +282,12 @@ def search(request):
 			pass
 		print (propertytype)
 	saledata = saledata.filter(property_type__in=propertytype)
+
+	# relate products
+
+	
+	
+
 
 
 	# # Rentdata filter search bar 
@@ -312,7 +320,8 @@ def search(request):
 	
 	context={
 		'rentdata':rentdata,
-		'saledata':saledata
+		'saledata':saledata,
+		
 	}
 
 	
