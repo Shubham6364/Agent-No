@@ -253,7 +253,7 @@ def rentdetail(request,detailid1id):
 
 
 def search(request):
-	saledata = Salepost.objects.select_related('user').all()
+	saledata = Salepost.objects.all()
 	
 	myCountry = request.GET.getlist('myCountry')
 	for  e in myCountry:
