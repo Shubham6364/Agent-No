@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath app.wsgi:application --access-logfile -
+gunicorn app:application --preload -b 0.0.0.0:5000 
