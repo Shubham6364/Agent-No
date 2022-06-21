@@ -26,12 +26,11 @@ urlpatterns = [
       path('staffsignup',views.staffsign,name='staffsignup'),
       path('salecrud',views.salecrud,name='salecrud'),
       path('stafflogout',views.stafflogout,name='stafflogout'),
-      path('edit',views.edit,name='edit'),
       path('delete/<str:id>',views.delete,name='delete'),
       path('UserProfile',views.UserProfile,name='UserProfile'),
       path('rentcrud',views.rentcrud,name='rentcrud'),
       path('upload/',views.upload,name='upload'),
-    
-    
+      path('delete<str:id>',views.delete,name="delete"),
+      
 
  ]

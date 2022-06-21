@@ -408,6 +408,11 @@ def salecrud(request):
 	return render(request,'salecrud.html',{'saledata':saledata})
 
 
+def delete(request,id):
+	d = Salepost.objects.get(id=id).delete()
+	return redirect('salecrud')
+
+	
 
 def stafflogout(request):
 	try:
@@ -423,21 +428,6 @@ def stafflogout(request):
 #     return render(request, "saleproperty.html")
 
 
-def delete(request,id):
-	emp = Salepost.objects.filter(id=id).delete()
-	context={
-		'emp':emp,
-	}
-	return render(request,'salecrud.html',context)
-
- 
-		
-def edit(request):
-	emp = Salepost.objects.all()
-	context={
-		'emp':emp,
-	}
-	return render(request,'salecrud.html',context)
 
 
 

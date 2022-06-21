@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import imp
 from pathlib import Path
+import django_heroku
+import dj_database_url
 import os
 from pickle import FALSE
 
@@ -31,8 +33,7 @@ SECRET_KEY = 'django-insecure-m8_s*uw4k&h+qhrx#6#!b(p1%%rr6zt_o#9e5r56=@joplq8jk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = "/login/"
 
@@ -157,8 +158,9 @@ USE_L10N = False
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = 'C:\project\agent\app\static'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+django_heroku.settings(locals())
 # Extra places for collectstatic to find static files.
 
 
