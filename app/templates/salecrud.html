@@ -57,7 +57,11 @@
     <h4>USER SALE DATABASE VIEW & APPROVE</h4>
 </div>
 
-<div class="tab_head">
+  
+<a href="{% url 'sale_delete'%}">sale_delete</a> 
+
+<div class="tab_head"><br>
+
   <h6 class="id">ID</h6>
   <h6 class="user">USER_ID </h6>
   <h6 class="name">CUSTOMER NAME</h6>
@@ -72,6 +76,7 @@
 </div>
 
 
+         
 <div class="table">
 
 
@@ -89,16 +94,15 @@
             <div class="g">Mumbai</div>
             <div class="h">{{data.location}}</div>
             <div class="i">{{data.property_type}}</div>
-            <a href="/staffaproval/{{data.id}}" class="j"> VIEW </a>
-            <a href="{% url 'delete' data.id}">DELETE</a>
+            <a  class="j"> VIEW </a>
+            <a href="{% url 'delete' data.id %}">DELETE</a>
         </div>
   
 
 {% endfor %}
 
 
-       
-         
+      
 </div>
 
 

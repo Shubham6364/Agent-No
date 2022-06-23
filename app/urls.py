@@ -30,7 +30,10 @@ urlpatterns = [
       path('UserProfile',views.UserProfile,name='UserProfile'),
       path('rentcrud',views.rentcrud,name='rentcrud'),
       path('upload/',views.upload,name='upload'),
-      path('delete<str:id>',views.delete,name="delete"),
+      path('delete_db/<str:id>',views.delete,name="delete"),
+      # path('staffaproval/<int:id>',views.staffaproval,name="staffaproval"),
+      # path('update',views.update,name='update'),
+      path('sale_delete',views.sale_delete,name="sale_delete")
       
 
  ]

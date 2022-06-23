@@ -443,7 +443,7 @@
     <body>
         <div class="main_box-{{forloop.counter}}">
         
-            <form class="main_display" action="/Update/{{data.id}}" method="post" enctype="multipart/form-data">
+            <form class="main_display" action="{% url 'update'%}" method="post" enctype="multipart/form-data">
                
                 {% csrf_token %}
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="border:1px solid gray;width:650px;float:left;color:red">

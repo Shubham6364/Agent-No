@@ -62,6 +62,7 @@ class Salepost(models.Model):
 	balcony = models.CharField(max_length=10,blank=True,null=True)
 	image1 = models.FileField(upload_to='views',blank=True,null=True)
 	image2 = models.FileField(upload_to='views',blank=True,null=True)
+	isDelete = models.BooleanField(default=False)
 	
 	new_slug=AutoSlugField(populate_from='property_type',unique=True,default=None)
 

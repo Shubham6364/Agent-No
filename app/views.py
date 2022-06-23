@@ -404,15 +404,49 @@ def stafflogin(request):
 
 
 def salecrud(request):
-	saledata = Salepost.objects.all().order_by('-id')
+	saledata = Salepost.objects.filter(isDelete=False).order_by('-id')
 	return render(request,'salecrud.html',{'saledata':saledata})
 
 
 def delete(request,id):
-	d = Salepost.objects.get(id=id).delete()
+	saledata = Salepost.objects.get(id=id)
+	saledata.isDelete = True
+	saledata.save()
+
+	context = {
+		'saledata':saledata
+	}
 	return redirect('salecrud')
 
+def sale_delete(request):
+	saledata = Salepost.objects.all()
+	saledata.isDelete = True
+	saledata.save()
+	context = {
+		'saledata':saledata
+	}
+	return render(request,'sale-delete.html',context)
+
+
+
+
+# def staffaproval(request,id):
+# 	data = Salepost.objects.get(id=id)
+# 	context = {
+# 		'data':data
+# 	}
+
+# 	return render(request,'staffaproval.html',context)
+
 	
+# def update(request):
+# 	return redirect('salecrud')
+
+
+
+
+
+
 
 def stafflogout(request):
 	try:
