@@ -29,11 +29,13 @@ urlpatterns = [
       path('delete/<str:id>',views.delete,name='delete'),
       path('UserProfile',views.UserProfile,name='UserProfile'),
       path('rentcrud',views.rentcrud,name='rentcrud'),
+      path('rentdelete/<str:pk>',views.rentdelete,name="rentdelete"),
       path('upload/',views.upload,name='upload'),
       path('delete_db/<str:id>',views.delete,name="delete"),
       # path('staffaproval/<int:id>',views.staffaproval,name="staffaproval"),
       # path('update',views.update,name='update'),
-      path('sale_delete',views.sale_delete,name="sale_delete")
+      path('sale_delete',views.sale_delete,name="sale_delete"),
+      path('rent_delete',views.rent_delete,name="rent_delete")
       
 
  ]

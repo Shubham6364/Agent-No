@@ -419,11 +419,10 @@ def delete(request,id):
 	return redirect('salecrud')
 
 def sale_delete(request):
-	saledata = Salepost.objects.all()
-	saledata.isDelete = True
-	saledata.save()
+	sale_delete = Salepost.objects.filter(isDelete=True).order_by('-id')
+
 	context = {
-		'saledata':saledata
+		'sale_delete':sale_delete
 	}
 	return render(request,'sale-delete.html',context)
 
@@ -471,13 +470,42 @@ def UserProfile(request):
 	else:
 		return redirect('login')
 	return redirect('detail')
+
+
+
+
     	
 def rentcrud(request):
-	rentdata = Rentpost.objects.all().order_by('-id')
+	rentdata = Rentpost.objects.filter(isDelete=False).order_by('-id')
 	context = {
 		'rentdata': rentdata
 	}
 	return render(request,'rentcrud.html',context)
+
+
+
+def rentdelete(request,pk):
+	rentdata = Rentpost.objects.get(id=pk)
+	rentdata.isDelete = True
+	rentdata.save()
+
+	context = {
+		'rentdata':rentdata
+	}
+	return redirect('rentcrud')
+
+
+
+
+def rent_delete(request):
+	rent_delete = Rentpost.objects.filter(isDelete=True).order_by('-id')
+
+	context = {
+		'rent_delete':rent_delete
+	}
+	return render(request,'rent_delete.html',context)
+
+
 
 def upload(request):
 	return render(request, 'uploadimg.html')

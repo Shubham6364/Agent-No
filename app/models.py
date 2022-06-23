@@ -108,6 +108,7 @@ class Rentpost(models.Model):
 	areasqt = models.TextField(max_length=1)		
 	multiple = models.TextField(max_length=1)
 	rent = models.CharField(max_length=10)
+	isDelete = models.BooleanField(default=False)
 	
 
 class Stafflogin(models.Model):

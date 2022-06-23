@@ -56,7 +56,8 @@
 <div class="title">
     <h4>USER RENT DATABASE VIEW & APPROVE</h4>
 </div>
-
+<a href="{% url 'rent_delete'%}">rent_delete</a> 
+<br>
 <div class="tab_head">
   <h6 class="id">ID</h6>
   <h6 class="user">USER_ID </h6>
@@ -88,7 +89,8 @@
             <div class="g">Mumbai </div>
             <div class="h">{{data.location}} </div>
             <div class="i">{{data.property_type}} </div>
-            <a href="#" class="j"> VIEW </a>
+            <a  class="j"> VIEW </a>
+              <a href="{% url 'rentdelete' data.id %}">DELETE</a>
         </div>
   
 
