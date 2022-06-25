@@ -140,19 +140,61 @@ $(".chosen-select").chosen();</script>
                   <div class="w-10 col-md-3">
                   {% comment %} <div id="output"></div> {% endcomment %}
                        
-                          <select  placeholder='locations' name="myCountry" multiple class="selectpicker chosen-select" data-live-search="true">
-                            <option value="Thane East">Thane East</option>
-                            <option value="Dombivli East">Dombivli East</option>
-                            <option value="Nahur West">Nahur West</option>
-                            <option value="Electical">Electrical</option>
-                            <option value="Mechanical">Mechanical</option>
-                            <option value="Airoli East">Airoli East</option>
-                            <option value="Bhayander">Bhayander</option>
-                            <option value="Virar East">Virar East</option>
-                            <option value="Ambernath East">Ambernath East</option>
-                            <option value="Ambivali">Ambivali</option>
-                         
-                          </select>
+                         <select name="myCountry" id="search" class="bar selectpicker"  multiple="multiple" style="margin-top:2px;" data-live-search="true" >
+
+           <option value="Airoli">Airoli</option><option value="AmbernathEast">Ambernath East</option><option value="AmbernathWest">Ambernath West</option>
+           <option value="AmbivliEast">AmbivliEast</option><option value="AmbivliWest">Ambivli West</option><option value="AndheriEast">Andheri East</option><option value="AndheriWest">Andheri West</option>
+           <option value="Apta">Apta</option><option value="Asangaon">Asangaon</option><option value="Atgaon">Atgaon</option>
+
+           <option value="BadlapurEast">Badlapur East</option><option value="BadlapurWest">Badlapur West</option><option value="BandraEast">Bandra East</option><option value="BandraWest">Bandra West</option>
+           <option value="Belapur">Belapur </option><option value="BhandupEast">Bhandup East</option><option value="BhandupWest">Bhandup West</option><option value="BhayandarEast">Bhayandar East</option>
+           <option value="BhayandarWest">Bhayandar West</option><option value="BhivpuriRoad">Bhivpuri Road</option><option value="Bhiwandi">Bhiwandi</option><option value="BorivaliEast">Borivali East</option>
+           <option value="BorivaliWest">Borivali West</option><option value="Byculla">Byculla </option><option value="BoisarEast">Boisar East</option><option value="BoisarWest">Boisar West</option>
+
+           <option value="CharniRoad">Charni Road </option><option value="Chembur">Chembur</option><option value="Chinchpokli">Chinchpokli</option><option value="Chunabhatti">Chunabhatti</option>
+           <option value="Churchgate">Churchgate </option><option value="CottonGreen">Cotton Green</option><option value="CurreyRoad">Curry Road </option> <option value="CST">CST</option>
+
+           <option value="Dadar">Dadar </option> <option value="DahanuRoad">Dahanu Road</option><option value="DahisarEast">Dahisar East</option><option value="DahisarWest">Dahisar West</option>
+           <option value="Dativali">Dativali</option><option value="DivaJNEast">Diva JN East</option><option value="DivaJNWest">Diva JN West</option><option value="DockyardRoad">Dockyard Road</option>
+           <option value="Dolavli">Dolavli</option><option value="DombivaliEast">Dombivali East</option><option value="DombivaliWest">Dombivali West</option>
+
+           <option value="GTBNagar">GTB Nagar</option><option value="Ghansoli">Ghansoli</option><option value="GhatkoparEast">Ghatkopar East</option><option value="GhatkoparWest">Ghatkopar West</option>
+           <option value="GoregaonEast">Goregaon East</option><option value="GoregaonWest">Goregaon West</option><option value="Govandi">Govandi </option><option value="GrantRoad">Grant Road </option>
+
+           <option value="JogeshwariEast">Jogeshwari East</option><option value="JogeshwariWest"> Jogeshwari West</option><option value="JuchandraRoad">Juchandra Road</option><option value="Juinagar">Juinagar</option>
+
+           <option value="KalwaEast">Kalwa East</option><option value="KalwaWest">Kalwa West</option><option value="KalyanEast">Kalyan East</option><option value="KalyanWest">Kalyan West</option><option value="Kalamboli">Kalamboli</option>
+           <option value="KamanRoad">Kaman Road</option><option value="KandivaliEast">Kandivali East</option><option value="KandivaliWest">Kandivali West</option><option value="KurlaEast">Kurla East</option><option value="KurlaWest">Kurla West</option>
+           <option value="KanjurMargEast">Kanjur Marg East</option><option value="kanjurMargWest">Kanjur Marg West</option><option value="Karjat">Karjat</option><option value="Kasara">Kasara</option><option value="Khasu">Khasu</option>
+           <option value="Kelavali">Kelavli</option><option value="KelveRoadEast">Kelve Road East</option><option value="KelveRoadWest">Kelve Road West</option><option value="Khadavali">Khadavali</option><option value="Khandeshwar">Khandeshwar</option>
+           <option value="KharRoadEast">Khar Road East</option><option value="KharRoadWest">Khar Road West</option><option value="Kharbao"> Kharbao</option><option value="Khardi">Khardi</option><option value="kharghar">Kharghar</option>
+           <option value="koparEast">kopar East</option><option value="koparWest">kopar West</option><option value="Khopoli">Khopoli</option><option value="KingsCircle">Kings Circle</option><option value="Koparkhairne">Kopar khairne</option>
+
+           <option value="LowerParel">Lower Parel </option><option value="Lowjee">Lowjee</option><option value="Mahalaxmi">Mahalaxmi</option><option value="MahimJN">Mahim JN</option><option value="MaladEast">Malad East</option><option value="Matunga">Matunga </option>
+           <option value="MaladWest">Malad West</option><option value="Mansarovar">Mansarovar</option><option value="Mankhurd">Mankhurd </option><option value="MarinLines">Marine Lines </option><option value="MasjidBunder">Masjid Bunder</option><option value="MumbraEast">Mumbra East</option>
+           <option value="MumbraWest">Mumbra West</option><option value="MiraRoad">Mira Road </option><option value="MulundEast">Mulund East</option><option value="MulundWest">Mulund West</option><option value="MumbaiCentral">Mumbai Central</option>
+
+           <option value="NahurEast">Nahur East</option><option value="NahurWest">Nahur West</option><option value="NaigaonEast"> Naigaon East</option><option value="NaigaonWest">Naigaon West</option><option value="NallaSoparaEast">NallaSopara East</option>
+           <option value="NallaSoparaWest">NallaSopara West</option><option value="NavadeRoad">Navade Road</option><option value="Neral">Neral</option><option value="Nagothane">Nagothane</option><option value="Nerul">Nerul</option><option value="Nilaje">Nilaje</option>
+
+           <option value="Palasdhari">Palasdhari</option><option value="PalgharEast">Palghar East</option><option value="PalgharWest">Palghar West</option><option value="Panvel">Panvel</option><option value="Parel">Parel</option><option value="Pen">Pen</option><option value="Prabhadevi">Prabhadevi</option>
+
+           <option value="Rabale">Rabale</option><option value="RamMandirEast">Ram MandirEast</option><option value="RamMandirWest">Ram Mandir West</option><option value="Rasayani">Rasayani</option><option value="ReayRoad">Reay Road</option><option value="Roha">Roha</option>
+
+           <option value="SandhurstRoad">Sandhurst Road</option><option value="Sanpada">Sanpada</option><option value="SantaCruzEast">SantaCruz East</option><option value="SantaCruzWest">SantaCruz West</option><option value="ShahadWest">Shahad West</option><option value="SaphaleEast">SaphaleEast</option>
+           <option value="SaphaleWest">SaphaleWest</option><option value="SeawoodDarave">Seawood Darave</option><option value="Sewri">Sewri</option><option value="Shivdi">Shivdi</option><option value="ShahadEast">Shahad East</option><option value="Shelu">Shelu</option><option value="Sion">Sion</option>
+
+           <option value="Taloja">Taloja </option><option value="ThakuraliEast">Thakurali East</option><option value="ThakuraliWest">Thakurli West</option><option value="ThaneEast">Thane East</option><option value="ThaneWest">Thane West</option><option value="Tilaknagar">Tilaknagar</option>
+           <option value="Turbhe">Turbhe </option><option value="TitwalaEast">TitwalaEast</option><option value="TitwalaWest">TitwalaWest</option>
+
+           <option value="UlhasnagarEast">Ulhasnagar East</option><option value="UlhasnagarWest">Ulhasnagar West</option><option value="UmroliEast">Umroli East</option><option value="UmroliWest">Umroli West</option><option value="Umbermalli">Umbermalli </option>
+
+           <option value="Vaitarana">Vaitarana</option><option value="Vangani">Vangani</option>
+           <option value="Vangaon">Vangaon</option><option value="VasaiRoadEast">Vasai Road East</option><option value="VasaiRoadWest">Vasai Road West</option><option value="Vashi">Vashi</option><option value="Vasind">Vasind</option><option value="VidyaViharEast">VidyaVihar East</option>
+           <option value="VidyaVihar West">VidyaVihar West</option><option value="VikhroliEast">Vikhroli East</option><option value="VikhroliWest">Vikhroli West</option><option value="VileParleEast">Vile Parle East</option><option value="VileParleWest">Vile Parle West</option>
+           <option value="VirarEast">Virar East</option><option value="VirarWest">Virar West</option><option value="VithalwadiEast">Vithalwadi East</option><option value="VithalwadiWest">Vithalwadi West</option><option value="WadalaRoad">Wadala Road </option>
+
+</select>
                         
                        
                     <div class="w-10 col-md-1">

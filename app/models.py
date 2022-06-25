@@ -44,7 +44,7 @@ class Salepost(models.Model):
 	date = models.DateField(max_length=5,blank=True, null=True)
 	furnishing =  models.TextField(max_length=10)
 	description = models.TextField(max_length=20)
-	image = models.FileField(upload_to='views')
+	image = models.FileField(upload_to='views', null=True)
 	video = models.FileField(upload_to='')
 	areasqt = models.TextField(max_length=4)
 	multiple = models.TextField(max_length=4)	

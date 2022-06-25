@@ -35,7 +35,7 @@ urlpatterns = [
       # path('staffaproval/<int:id>',views.staffaproval,name="staffaproval"),
       # path('update',views.update,name='update'),
       path('sale_delete',views.sale_delete,name="sale_delete"),
-      path('rent_delete',views.rent_delete,name="rent_delete")
-      
+      path('rent_delete',views.rent_delete,name="rent_delete"),
+      path('pooja',views.pooja,name="pooja")
 
  ]
