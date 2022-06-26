@@ -255,19 +255,18 @@ def pooja(request):
 
 def search(request):
 	saledata = Salepost.objects.all().order_by('-id')
-	myCountry = request.GET.getlist('myCountry')
-	for  e in myCountry:
-		try:
-			myCountry.append(int(e))
-		except Exception as e:
-			pass
-		print (myCountry)
-
-		j = 0 #initialize the index 
-		while j < len(myCountry):
-			print(myCountry[j]) 
-			j+=1 	
+	
+	myCountry	= request.GET.getlist('myCountry')
+	for e in range (len(myCountry)):
+		print(myCountry[e])
+		e+=1
+	try:
+		myCountry.append(int(e))
+	except Exception as e:
+		pass
 	saledata = saledata.filter(location__in=myCountry)
+	
+
 	
 	seller = request.GET.get('seller')
 	for  e in seller:
@@ -275,8 +274,9 @@ def search(request):
 			seller.append(int(e))
 		except Exception as e:
 			pass
-		print (seller)	
+			
 	saledata = saledata.filter(Buy__icontains=seller)
+	
 
 
 	propertytype = request.GET.getlist('propertytype')
@@ -285,9 +285,9 @@ def search(request):
 			propertytype.append(int(e))
 		except Exception as e:
 			pass
-		print (propertytype)
+		
 	saledata = saledata.filter(property_type__in=propertytype)
-
+	
 	# relate products
 
 	
@@ -304,6 +304,7 @@ def search(request):
 			myCountry.append(int(e))
 		except Exception as e:
 			pass
+	
 			
 	rentdata = rentdata.filter(location__icontains=myCountry)
 	
@@ -402,6 +403,7 @@ def stafflogin(request):
 		
 		
 	
+
 
 		
 		
