@@ -255,7 +255,6 @@ def pooja(request):
 
 def search(request):
 	saledata = Salepost.objects.all().order_by('-id')
-	
 	myCountry	= request.GET.getlist('myCountry')
 	for e in range (len(myCountry)):
 		print(myCountry[e])
