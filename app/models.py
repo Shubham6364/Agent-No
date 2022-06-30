@@ -61,13 +61,21 @@ class Salepost(models.Model):
 	balcony = models.CharField(max_length=10,blank=True,null=True)
 	isDelete = models.BooleanField(default=False)
 	new_slug=AutoSlugField(populate_from='property_type',unique=True,default=None)
-	image1 = models.ImageField(upload_to='views', null=True)
-	image2 = models.ImageField(upload_to='views', null=True)
-	imag3 = models.ImageField(upload_to='views', null=True)
+	image1 = models.ImageField(upload_to='views', blank=True, null=True ,default='profile_img/925667.jpg')
+	image2 = models.ImageField(upload_to='views', blank=True, null=True , default='profile_img/925667.jpg')
+	imag3 = models.ImageField(upload_to='views', blank=True, null=True ,default='profile_img/925667.jpg')
 	
+	def image1_url(self):   
+		if self.image1 and hasattr(self.image1, 'url'):       
+					return self.image1.url
+	def image2_url(self):   
+		if self.image2 and hasattr(self.image2, 'url'):       
+					return self.image2.url
 
-	def default(self):
-		return self.image1.filter(default=True).first()
+	def imag3_url(self):   
+		if self.image3 and hasattr(self.imag3, 'url'):       
+					return self.imag3.url
+
 	
     
 	
