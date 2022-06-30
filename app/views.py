@@ -42,7 +42,7 @@ def post(request):
 		furn = request.POST.get('furnishing')
 		des = request.POST.get('Description')
 		sqt = request.POST.get('sqt')
-		imag =  request.FILES.get('images')
+		image1 =  request.FILES.get('image1')
 		vid = request.FILES.get('vid')
 		seller = request.POST.get('seller')
 		lift = request.POST.get('lift')
@@ -56,8 +56,8 @@ def post(request):
 		towfourwheeler = request.POST.get('towfourwheeler')
 		gateaccess = request.POST.get('gateaccess')
 		balcony = request.POST.get('balcony')
-		images1 = request.FILES.get('images1')
-		images2 = request.FILES.get('images2')
+		image2 = request.FILES.get('image2')
+		image3 = request.FILES.get('image3')
 
 		
 	
@@ -70,7 +70,10 @@ def post(request):
 		land_mark=lm, location=lo,selling_price=sp, date=da,furnishing=furn,description=des,areasqt=sqt,video=vid, Buy=seller,
 		lift=lift,gym=Gym,swimmingpool=SwimmingPool,petsallowed=petsallowed,wifiinternet=Wifiinternet
 		,childrenPlayground=Childrenplayground,twowheeler=twowheeler,fourwheeler=fourwheeler,towfourwheeler=towfourwheeler,
-		gateaccess=gateaccess,balcony=balcony,image=imag,image1=images1,image2=images2)
+		gateaccess=gateaccess,balcony=balcony,image1=image1,image2=image2,imag3=image3)
+
+		
+
 		
 		
 		# for image in imag:
@@ -119,7 +122,7 @@ def rent(request):
 		sqt = request.POST['sqt']
 		multiple = request.POST['karla']
 		imag =  request.FILES['image']
-		vid = request.FILES['vid']
+		# vid = request.FILES['vid']
 		rent = request.POST['rent']
 
 		z = Rentpost(property_type=pname, area_type=area_type,
@@ -127,7 +130,7 @@ def rent(request):
 					propertystatus=propertystatus, landmark=land_mark, location=location,
 					askingrent=askingrent, askingdeposite=askingdeposit,date=date, 
 					furnishing=furnishing, description=description, areasqt=sqt, multiple=multiple,
-					image=imag,video=vid,rent=rent)
+					image=imag,rent=rent)
 		
 		user_login = User.objects.get(username=request.user.username)
 		z.user = user_login
@@ -242,7 +245,6 @@ def detail(request,slug):
 	
 
 
-
 # rent detislapage
 
 def rentdetail(request,detailid1id):
@@ -253,19 +255,23 @@ def pooja(request):
 	return render(request, 'pooja.html')
 
 
-def search(request):
-	saledata = Salepost.objects.all().order_by('-id')
-	myCountry	= request.GET.getlist('myCountry')
-	for e in range (len(myCountry)):
-		print(myCountry[e])
-		e+=1
-	try:
-		myCountry.append(int(e))
-	except Exception as e:
-		pass
-	saledata = saledata.filter(location__in=myCountry)
-	
 
+
+def search(request):
+
+	data = Salepost.objects.all()
+	
+	myCountry	= request.GET.getlist('myCountry')
+	for  e in myCountry:
+		try:
+			myCountry.append(int(e))
+		except Exception as e:
+			pass
+	data = data.filter(location__in=myCountry)
+
+
+	
+ 	
 	
 	seller = request.GET.get('seller')
 	for  e in seller:
@@ -274,8 +280,7 @@ def search(request):
 		except Exception as e:
 			pass
 			
-	saledata = saledata.filter(Buy__icontains=seller)
-	
+	data = data.filter(Buy__icontains=seller)
 
 
 	propertytype = request.GET.getlist('propertytype')
@@ -285,35 +290,30 @@ def search(request):
 		except Exception as e:
 			pass
 		
-	saledata = saledata.filter(property_type__in=propertytype)
+	data = data.filter(property_type__in=propertytype)
 	
-	# relate products
+
+
 
 	
-	# real = Salepost.objects.select_related('user').all()
-
-
-
-	# # Rentdata filter search bar 
-
-	rentdata = Rentpost.objects.all()
-	myCountry = request.GET.get('myCountry')
-	for  e in myCountry:
+	info = Rentpost.objects.all()
+	myCountry = request.GET.getlist('myCountry')
+	for e in myCountry:
 		try:
 			myCountry.append(int(e))
 		except Exception as e:
 			pass
-	
-			
-	rentdata = rentdata.filter(location__icontains=myCountry)
-	
+	info = info.filter(location__in=myCountry)
+
+
 	seller = request.GET.get('seller')
 	for  e in seller:
 		try:
-			seller.append(int(e))
+			sellerseller.append(int(e))
 		except Exception as e:
-			pass	
-	rentdata = rentdata.filter(rent__icontains=seller)		
+			pass
+	info = info.filter(rent__icontains=seller)
+
 
 	propertytype = request.GET.getlist('propertytype')
 	for  e in propertytype:
@@ -321,11 +321,13 @@ def search(request):
 			propertytype.append(int(e))
 		except Exception as e:
 			pass
-	rentdata = rentdata.filter(property_type__in=propertytype)
-	
+		
+	info = info.filter(property_type__in=propertytype)
+
 	context={
-		'rentdata':rentdata,
-		'saledata':saledata,
+		'data':data,
+		'info':info,
+		
 		
 		
 	}
@@ -433,19 +435,6 @@ def sale_delete(request):
 	return render(request,'sale-delete.html',context)
 
 
-
-
-# def staffaproval(request,id):
-# 	data = Salepost.objects.get(id=id)
-# 	context = {
-# 		'data':data
-# 	}
-
-# 	return render(request,'staffaproval.html',context)
-
-	
-# def update(request):
-# 	return redirect('salecrud')
 
 
 

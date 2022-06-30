@@ -44,7 +44,6 @@ class Salepost(models.Model):
 	date = models.DateField(max_length=5,blank=True, null=True)
 	furnishing =  models.TextField(max_length=10)
 	description = models.TextField(max_length=20)
-	image = models.FileField(upload_to='views', null=True)
 	video = models.FileField(upload_to='')
 	areasqt = models.TextField(max_length=4)
 	multiple = models.TextField(max_length=4)	
@@ -60,19 +59,22 @@ class Salepost(models.Model):
 	towfourwheeler = models.CharField(max_length=10,blank=True,null=True)
 	gateaccess = models.CharField(max_length=10,blank=True,null=True)
 	balcony = models.CharField(max_length=10,blank=True,null=True)
-	image1 = models.FileField(upload_to='views',blank=True,null=True)
-	image2 = models.FileField(upload_to='views',blank=True,null=True)
 	isDelete = models.BooleanField(default=False)
-	
 	new_slug=AutoSlugField(populate_from='property_type',unique=True,default=None)
+	image1 = models.ImageField(upload_to='views', null=True)
+	image2 = models.ImageField(upload_to='views', null=True)
+	imag3 = models.ImageField(upload_to='views', null=True)
+	
 
+	def default(self):
+		return self.image1.filter(default=True).first()
 	
     
 	
 
 	def save(self, *args, **kwargs):
-		new_image = compress(self.image)
-		self.image = new_image
+		new_image = compress(self.image1)
+		self.image1 = new_image
 		super().save(*args, **kwargs)
 
 			
@@ -124,5 +126,6 @@ class Employee(models.Model):
 	email = models.EmailField(max_length=24)
 	address = models.TextField()
 	phone = models.IntegerField()
+
 
 
