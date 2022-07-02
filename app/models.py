@@ -30,6 +30,8 @@ def compress(image):
 
 class Salepost(models.Model):
 	STATUS = ('Publish','Publish'),('Draft','Draft')
+	
+
 	status = models.CharField(choices=STATUS, max_length=50,default='Draft')
 	user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 	property_type = models.TextField(max_length=10)
@@ -44,7 +46,6 @@ class Salepost(models.Model):
 	date = models.DateField(max_length=5,blank=True, null=True)
 	furnishing =  models.TextField(max_length=10)
 	description = models.TextField(max_length=20)
-	video = models.FileField(upload_to='')
 	areasqt = models.TextField(max_length=4)
 	multiple = models.TextField(max_length=4)	
 	Buy = models.CharField(max_length=10)
@@ -61,12 +62,13 @@ class Salepost(models.Model):
 	balcony = models.CharField(max_length=10,blank=True,null=True)
 	isDelete = models.BooleanField(default=False)
 	new_slug=AutoSlugField(populate_from='property_type',unique=True,default=None)
-	image1 = models.ImageField(upload_to='views', blank=True, null=True ,default='pictures/picture.png')
-	image2 = models.ImageField(upload_to='views', blank=True, null=True , default='pictures/picture.png')
-	imag3 = models.ImageField(upload_to='views', blank=True, null=True ,default='pictures/picture.png')
-	
-	
+	image1 = models.ImageField(upload_to = 'views', default= 'views/download.jfif', null=True, blank=True)
+	image2 =  models.ImageField(upload_to = 'views', default= 'views/download.jfif', null=True, blank=True)
+	image3 =  models.ImageField(upload_to = 'views', default= 'views/download.jfif', null=True, blank=True)
 
+	
+	
+	
 	
     
 	

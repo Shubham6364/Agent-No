@@ -42,8 +42,6 @@ def post(request):
 		furn = request.POST.get('furnishing')
 		des = request.POST.get('Description')
 		sqt = request.POST.get('sqt')
-		image1 =  request.FILES.get('image1')
-		vid = request.FILES.get('vid')
 		seller = request.POST.get('seller')
 		lift = request.POST.get('lift')
 		Gym = request.POST.get('Gym')
@@ -56,21 +54,25 @@ def post(request):
 		towfourwheeler = request.POST.get('towfourwheeler')
 		gateaccess = request.POST.get('gateaccess')
 		balcony = request.POST.get('balcony')
-		image2 = request.FILES.get('image2')
-		image3 = request.FILES.get('image3')
+		image1 =  request.FILES.get('image1')
+		image2 =  request.FILES.get('image2')
+		image3 =  request.FILES.get('image3')
 
-		
+
+		# for image1 in image1:
+		# 	y = Salepost.objects.create(image1=image1).save
+
 	
-			
+		
 	
    	
 	
 		
 		y =Salepost(property_type=baseclass, area_type=area_type, floor=f, total_floor=tf,property_age=pa, property_status=ps,
-		land_mark=lm, location=lo,selling_price=sp, date=da,furnishing=furn,description=des,areasqt=sqt,video=vid, Buy=seller,
+		land_mark=lm, location=lo,selling_price=sp, date=da,furnishing=furn,description=des,areasqt=sqt, Buy=seller,
 		lift=lift,gym=Gym,swimmingpool=SwimmingPool,petsallowed=petsallowed,wifiinternet=Wifiinternet
 		,childrenPlayground=Childrenplayground,twowheeler=twowheeler,fourwheeler=fourwheeler,towfourwheeler=towfourwheeler,
-		gateaccess=gateaccess,balcony=balcony,image1=image1,image2=image2,imag3=image3)
+		gateaccess=gateaccess,balcony=balcony,image1=image1,image2=image2,image3=image3)
 
 		
 
@@ -85,9 +87,6 @@ def post(request):
 		
 		y.save()
 		
-		
-		
-	
 		messages.success(request, 'Profile details updated.')
 		return redirect('post')
 
@@ -230,7 +229,7 @@ def main(request):
 	saledata = Salepost.objects.all()
 	rentdata = Rentpost.objects.all()
 	
-
+	
 		# sale paginator
 	
 	return render(request, 'main.html',{'data':saledata,'info':rentdata})
